@@ -21,3 +21,7 @@ export const kosongkanPengguna = async (payload: Payload): Promise<void> => {
 export const kosongkanLead = async (payload: Payload): Promise<void> => {
   await payload.delete({ collection: 'leads', where: { id: { exists: true } } })
 }
+
+export const kosongkanInsight = async (payload: Payload): Promise<void> => {
+  await payload.delete({ collection: 'insight', where: { id: { exists: true } } })
+}

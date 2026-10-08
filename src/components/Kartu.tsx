@@ -6,6 +6,7 @@ import { getMessages } from '@/i18n'
 const t = getMessages().layout.kartu
 
 type Gambar = { src: string; alt: string }
+export type UkuranKartuInsight = 'utama' | 'biasa'
 
 /** Satu baris di daftar Layanan: nama, ringkasan, dan tautan ke halamannya. */
 export function KartuLayanan({ judul, ringkasan, href }: { judul: string; ringkasan: string; href: string }) {
@@ -28,7 +29,9 @@ export function KartuInsight({
   meta,
   href,
   sampul,
+  ukuran = 'biasa',
 }: {
+  ukuran?: UkuranKartuInsight
   judul: string
   ringkasan: string
   kategori: string
@@ -36,19 +39,28 @@ export function KartuInsight({
   href: string
   sampul?: Gambar
 }) {
+  const Judul = ukuran === 'utama' ? 'h2' : 'h3'
   return (
-    <article className="kartu-insight">
+    <article className={`kartu-insight kartu-insight--${ukuran}`}>
       {sampul && (
         <div className="kartu-insight__sampul">
-          <Image src={sampul.src} alt={sampul.alt} fill sizes="(min-width: 960px) 360px, 100vw" />
+          <Image
+            src={sampul.src}
+            alt={sampul.alt}
+            fill
+            sizes={ukuran === 'utama' ? '(min-width: 960px) 600px, 100vw' : '(min-width: 960px) 360px, 100vw'}
+          />
         </div>
       )}
-      <span className="kartu-insight__kategori">{kategori}</span>
-      <h3 className="kartu-insight__judul">
-        <Link href={href}>{judul}</Link>
-      </h3>
-      <p className="kartu-insight__ringkasan">{ringkasan}</p>
-      <p className="kartu-insight__meta">{meta}</p>
+      <div className="kartu-insight__teks">
+        <span className="kartu-insight__kategori">{kategori}</span>
+        {/* Kartu utama membuka daftar, jadi judulnya H2; kartu lain berada di bawahnya. */}
+        <Judul className="kartu-insight__judul">
+          <Link href={href}>{judul}</Link>
+        </Judul>
+        <p className="kartu-insight__ringkasan">{ringkasan}</p>
+        <p className="kartu-insight__meta">{meta}</p>
+      </div>
     </article>
   )
 }
