@@ -1,0 +1,346 @@
+<title>Identitas Visual RISE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+  /* Layout: lembar presentasi brand. Logo tampil di "papan" berwarna tetap sesuai latar yang dituju,
+     sementara bingkai halaman mengikuti tema pembaca. Token warna diturunkan dari docs/brand/tokens.css. */
+  :root {
+    --blue: #1F6FB2;
+    --navy: #123A66;
+    --amber: #FFA500;
+    --cream: #FBF8F3;
+    --sand: #F1EBE0;
+    --ink: #1F2A2B;
+
+    --bg: var(--cream);
+    --surface: #FFFFFF;
+    --fg: var(--ink);
+    --muted: #5B6665;
+    --line: #D9D1C3;
+    --accent: var(--blue);
+    --chip-bg: #E7F0F8;
+    --chip-fg: #185A91;
+
+    --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1620; --surface: #142131; --fg: #EEE9E0; --muted: #A3ADB8; --line: #25354A;
+      --accent: #8CC0EC; --chip-bg: #1A3350; --chip-fg: #A9CFF0; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1620; --surface: #142131; --fg: #EEE9E0; --muted: #A3ADB8; --line: #25354A;
+    --accent: #8CC0EC; --chip-bg: #1A3350; --chip-fg: #A9CFF0; color-scheme: dark;
+  }
+
+  body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 1rem; line-height: 1.6; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 72px; display: grid; gap: 64px; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; line-height: 1.2; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); font-weight: 800; }
+  h2 { font-size: 1.5rem; font-weight: 700; }
+  h3 { font-size: 1.1rem; font-weight: 700; }
+  p { margin: 0; max-width: 65ch; }
+  .eyebrow { font-family: var(--font-display); font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  .muted { color: var(--muted); }
+  code, .hex { font-family: var(--font-mono); font-size: .85em; }
+  section { display: grid; gap: 24px; }
+  .head { display: grid; gap: 8px; }
+
+  /* Pembuka */
+  .intro { display: grid; gap: 20px; }
+  .status { display: inline-flex; align-items: center; gap: 8px; width: fit-content; padding: 4px 12px; border-radius: 999px;
+            background: var(--chip-bg); color: var(--chip-fg); font-size: .85rem; font-weight: 600; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--amber); }
+
+  /* Papan logo: warnanya tetap, apa pun tema halaman */
+  .board { border-radius: 16px; display: grid; place-items: center; padding: 40px 24px; min-height: 180px; position: relative; }
+  .board svg { width: 100%; height: auto; display: block; }
+  .board.cream { background: var(--cream); box-shadow: inset 0 0 0 1px #E7E0D3; }
+  .board.white { background: #FFFFFF; box-shadow: inset 0 0 0 1px #E7E0D3; }
+  .board.blue { background: var(--blue); }
+  .board.navy { background: var(--navy); }
+  .board.sand { background: var(--sand); }
+  .board .tag { position: absolute; left: 14px; bottom: 10px; font-size: .75rem; font-weight: 500; }
+  .board.cream .tag, .board.white .tag, .board.sand .tag { color: #5B6665; }
+  .board.blue .tag, .board.navy .tag { color: #DCE9F5; }
+  .hero-board { padding: 64px 24px; min-height: 260px; }
+  .hero-board svg { max-width: 560px; }
+
+  /* Tiga konsep */
+  .concepts { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .concept { display: grid; grid-template-rows: auto 1fr; gap: 16px; background: var(--surface); border-radius: 16px; padding: 12px 12px 20px;
+             box-shadow: 0 0 0 1px var(--line); }
+  .concept.pick { box-shadow: 0 0 0 2px var(--accent); }
+  .concept .board { min-height: 150px; padding: 32px 20px; }
+  .concept .board svg { max-width: 300px; }
+  .concept .body { display: grid; gap: 8px; align-content: start; padding-inline: 8px; min-width: 0; }
+  .concept .title { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .badge { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px;
+           background: var(--amber); color: var(--ink); }
+  .concept .risk { font-size: .9rem; }
+
+  /* Varian */
+  .variants { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; }
+  .variants .board svg { max-width: 320px; }
+  .icons { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .icons .board { min-height: 200px; }
+  .favs { display: flex; align-items: flex-end; gap: 24px; flex-wrap: wrap; justify-content: center; }
+  .favs figure { margin: 0; display: grid; justify-items: center; gap: 8px; font-size: .75rem; color: #5B6665; font-variant-numeric: tabular-nums; }
+  .favs svg { width: auto; }
+  .appicon svg { width: 120px; border-radius: 26px; }
+  .symbol svg { max-width: 120px; }
+
+  /* Palet */
+  .palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+  .swatch { display: grid; grid-template-rows: 112px auto; border-radius: 14px; overflow: hidden; background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+  .swatch .chip { display: flex; align-items: flex-end; padding: 12px 14px; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; }
+  .swatch .info { display: grid; gap: 4px; padding: 12px 14px 14px; font-size: .88rem; min-width: 0; }
+  .swatch .info strong { font-family: var(--font-display); font-size: .95rem; }
+  .ratio { font-variant-numeric: tabular-nums; }
+  .warn { color: #B3261E; font-weight: 600; }
+  :root[data-theme="dark"] .warn { color: #F2A099; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .warn { color: #F2A099; } }
+  .status-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .status-pill { padding: 6px 12px; border-radius: 999px; font-size: .85rem; font-weight: 600; }
+
+  /* Tipografi */
+  .type { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .specimen { background: var(--surface); border-radius: 16px; padding: 24px; display: grid; gap: 12px; box-shadow: 0 0 0 1px var(--line); align-content: start; min-width: 0; }
+  .specimen .big { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 3.4vw, 2.2rem); letter-spacing: -0.02em; line-height: 1.15; text-wrap: balance; }
+  .specimen .para { font-size: 1.02rem; }
+  .specimen .meta { font-size: .82rem; }
+
+  /* Pratinjau di website */
+  .mock { border-radius: 16px; overflow: hidden; background: var(--cream); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+  .mock nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px; border-bottom: 1px solid #E7E0D3; flex-wrap: wrap; }
+  .mock nav svg { height: 30px; width: auto; display: block; }
+  .mock nav ul { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; font-size: .9rem; font-weight: 500; flex-wrap: wrap; }
+  .mock .hero { display: grid; gap: 18px; padding: 48px 24px 56px; max-width: 720px; }
+  .mock .hero h3 { font-size: clamp(1.7rem, 4vw, 2.6rem); font-weight: 800; color: var(--ink); }
+  .mock .hero p { color: #5B6665; font-size: 1.05rem; }
+  .mock .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn { font-family: var(--font-body); font-weight: 600; font-size: .95rem; padding: 12px 20px; border-radius: 10px; border: 0; }
+  .btn.primary { background: var(--blue); color: #FFFFFF; }
+  .btn.secondary { background: var(--amber); color: var(--ink); }
+  .btn.ghost { background: transparent; color: var(--blue); box-shadow: inset 0 0 0 1.5px var(--blue); }
+  .mock .band { background: var(--navy); color: #FBF8F3; padding: 24px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .mock .band svg { height: 26px; width: auto; display: block; }
+  .mock .band span { font-size: .9rem; color: #DCE9F5; }
+
+  /* Catatan */
+  .notes { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
+  .notes li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: baseline; }
+  .notes li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); transform: translateY(1px); }
+  footer { font-size: .85rem; }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <span class="eyebrow">SOH-140 · Brand RISE</span>
+    <h1>Identitas visual RISE</h1>
+    <p class="muted">Reformia Inspirasi Semesta. Tiga konsep logo yang dipertimbangkan dan konsep terpilih, beserta palet warna dan tipografi yang akan dipakai website rise-reformia.id. Karakternya modern-hangat: profesional untuk Klien B2B, tetapi tetap humanis.</p>
+    <span class="status">Konsep A dipilih dan direvisi · 8 Oktober 2026</span>
+    <div class="board cream hero-board" data-logo="A" data-scheme="color" aria-label="Logo RISE konsep Fajar"></div>
+  </header>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Pilihan konsep</span>
+      <h2>Tiga arah simbol, satu wordmark</h2>
+      <p class="muted">Versi awal eksplorasi, ditampilkan sebagai arsip. Ketiganya memakai huruf RISE yang sama; yang berbeda hanya simbol di depannya. Konsep A dipilih lalu direvisi ke biru laut (lihat logo di atas).</p>
+    </div>
+    <div class="concepts">
+      <article class="concept pick">
+        <div class="board cream" data-logo="A0" data-scheme="awal"></div>
+        <div class="body">
+          <div class="title"><h3>A · Fajar</h3><span class="badge">Dipilih</span></div>
+          <p>Matahari separuh terbit di atas dua garis cakrawala. Langsung menerjemahkan "RISE" dan "Inspirasi" tanpa klise globe atau panah naik. Garis yang bertumpuk juga bisa dibaca sebagai Layanan yang saling menopang.</p>
+          <p class="muted risk">Direvisi: garis dan tulisan biru laut, matahari amber lebih besar, garis atas lebih panjang.</p>
+        </div>
+      </article>
+      <article class="concept">
+        <div class="board cream" data-logo="B" data-scheme="awal"></div>
+        <div class="body">
+          <div class="title"><h3>B · Tunas Insan</h3></div>
+          <p>Sosok manusia dengan lengan terangkat. Menonjolkan sisi manusia dan Layanan Psikologi Industri &amp; Organisasi.</p>
+          <p class="muted risk">Risiko: mudah terbaca sebagai ikon panah atau "orang" generik, dan makna "terbit" hilang.</p>
+        </div>
+      </article>
+      <article class="concept">
+        <div class="board cream" data-logo="C" data-scheme="awal"></div>
+        <div class="body">
+          <div class="title"><h3>C · Monogram R</h3></div>
+          <p>Huruf R dari batang teal dan setengah lingkaran amber. Tegas dan mudah diingat.</p>
+          <p class="muted risk">Risiko: terasa lebih korporat-generik dan mirip banyak monogram huruf lain.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Konsep A dalam pemakaian</span>
+      <h2>Varian logo</h2>
+      <p class="muted">Warna penuh hanya untuk latar terang. Di atas latar biru atau gelap, logo putih seluruhnya, termasuk mataharinya.</p>
+    </div>
+    <div class="variants">
+      <div class="board cream" data-logo="A" data-scheme="color"><span class="tag">Warna penuh · latar terang</span></div>
+      <div class="board navy" data-logo="A" data-scheme="dark"><span class="tag">Latar gelap · putih seluruhnya</span></div>
+      <div class="board white" data-logo="A" data-scheme="mono"><span class="tag">Monokrom tinta</span></div>
+      <div class="board blue" data-logo="A" data-scheme="mono-white"><span class="tag">Latar biru laut · putih seluruhnya</span></div>
+    </div>
+    <div class="icons">
+      <div class="board sand symbol" data-mark="A" data-scheme="color"><span class="tag">Simbol</span></div>
+      <div class="board white appicon" id="appicon"><span class="tag">App icon</span></div>
+      <div class="board white"><div class="favs" id="favs"></div><span class="tag">Favicon, ukuran asli</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Palet warna</span>
+      <h2>Biru laut yang tenang, dihangatkan matahari terbit</h2>
+      <p class="muted">Rasio kontras dihitung dengan rumus WCAG 2.x. Batas AA: 4,5 untuk teks biasa, 3 untuk teks besar dan komponen UI.</p>
+    </div>
+    <div class="palette">
+      <div class="swatch"><div class="chip" style="background:#1F6FB2;color:#FFFFFF">Biru laut</div>
+        <div class="info"><strong>Primer</strong><span class="hex">#1F6FB2</span><span class="ratio">Teks putih di atasnya 5,28</span><span class="muted">Logo, tombol utama, tautan</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#FFA500;color:#1F2A2B">Amber</div>
+        <div class="info"><strong>Sekunder</strong><span class="hex">#FFA500</span><span class="ratio">Teks tinta di atasnya 7,47</span><span class="ratio warn">Sebagai teks di latar terang 1,86 sampai 1,97, jangan dipakai</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#B4531F;color:#FFFFFF">Terakota</div>
+        <div class="info"><strong>Aksen</strong><span class="hex">#B4531F</span><span class="ratio">Teks di latar krem 4,72</span><span class="muted">Dipakai hemat: sorotan dan angka</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#FBF8F3;color:#1F2A2B;box-shadow:inset 0 -1px 0 #E7E0D3">Krem</div>
+        <div class="info"><strong>Latar halaman</strong><span class="hex">#FBF8F3</span><span class="ratio">Biru laut di atasnya 4,99</span><span class="muted">Pengganti putih dingin</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#1F2A2B;color:#FBF8F3">Tinta</div>
+        <div class="info"><strong>Teks utama</strong><span class="hex">#1F2A2B</span><span class="ratio">Di latar krem 13,92</span><span class="muted">Teks, logo monokrom</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#123A66;color:#FFFFFF">Navy</div>
+        <div class="info"><strong>Latar gelap</strong><span class="hex">#123A66</span><span class="ratio">Teks putih di atasnya 11,52</span><span class="muted">Footer, seksi kontras</span></div></div>
+    </div>
+    <div class="status-row" aria-label="Warna status">
+      <span class="status-pill" style="background:#EAF4EE;color:#27704A">Sukses 5,33</span>
+      <span class="status-pill" style="background:#FFF4DC;color:#8A5A00">Peringatan 5,43</span>
+      <span class="status-pill" style="background:#FDECEA;color:#B3261E">Galat 5,72</span>
+      <span class="status-pill" style="background:#E8F1FA;color:#1F5F9E">Info 5,77</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Tipografi</span>
+      <h2>Dua huruf, dua peran</h2>
+    </div>
+    <div class="type">
+      <div class="specimen">
+        <span class="eyebrow">Judul · Plus Jakarta Sans</span>
+        <div class="big">Bisnis yang bertumbuh dimulai dari organisasi yang tertata.</div>
+        <p class="muted meta">Bobot 600, 700, 800. Geometris dan ramah, dirancang oleh desainer Indonesia.</p>
+      </div>
+      <div class="specimen">
+        <span class="eyebrow">Isi · Inter</span>
+        <p class="para">RISE mendampingi HR, direksi, dan owner bisnis menyelesaikan persoalan organisasi, mulai dari strategi dan struktur, penilaian dan pengembangan SDM, hingga pengembangan usaha dan kompetensi tim.</p>
+        <p class="muted meta">Bobot 400, 500, 600. Sangat terbaca untuk paragraf panjang dan form.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Pratinjau</span>
+      <h2>Seperti apa di website</h2>
+      <p class="muted">Gambaran kasar header dan hero Beranda dengan copy dari SOH-142. Desain halaman sebenarnya dikerjakan di ticket layout.</p>
+    </div>
+    <div class="mock">
+      <nav>
+        <span data-logo="A" data-scheme="color" class="navlogo"></span>
+        <ul><li>Tentang Kami</li><li>Layanan</li><li>Insight</li><li>Kontak</li></ul>
+      </nav>
+      <div class="hero">
+        <h3>Bisnis yang bertumbuh dimulai dari organisasi yang tertata.</h3>
+        <p>Konsultasi manajemen, psikologi industri &amp; organisasi, konsultasi bisnis, serta training &amp; pengembangan dalam satu mitra.</p>
+        <div class="ctas">
+          <button class="btn primary" type="button">Jadwalkan konsultasi</button>
+          <button class="btn ghost" type="button">Kenali Layanan kami</button>
+        </div>
+      </div>
+      <div class="band">
+        <span data-logo="A" data-scheme="dark" class="navlogo"></span>
+        <span>rise-reformia.id</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="head">
+      <span class="eyebrow">Langkah berikutnya</span>
+      <h2>Setelah konsep dipilih</h2>
+    </div>
+    <ul class="notes">
+      <li><span>Konsep A (Fajar) dipilih dan direvisi ke biru laut. Palet dan tipografi di halaman ini menjadi dasar desain website.</span></li>
+      <li><span>Bentuk huruf wordmark, terutama "S", dirapikan lagi oleh desainer sebelum dipakai di materi cetak.</span></li>
+      <li><span>Versi vertikal (simbol di atas tulisan) dan favicon .ico menyusul.</span></li>
+    </ul>
+    <footer class="muted">Disiapkan oleh Soho Digital untuk RISE · Oktober 2026</footer>
+  </section>
+</div>
+
+<script>
+  // Geometri logo sama persis dengan file di docs/brand/; warna ditentukan per skema.
+  const WORDMARK = `
+    <path d="M4.5 45.5V4.5H22A11.5 11.5 0 0 1 22 27.5H4.5M20 27.5L33 45.5"/>
+    <path transform="translate(46 0)" d="M4.5 45.5V4.5"/>
+    <path transform="translate(64 0)" d="M31 12C28 7 22 4.5 17 4.5C9 4.5 5 9 5 14C5 20 10 22.5 18 24.5C26 26.5 31 29 31 35.5C31 41.5 26 45.5 18 45.5C12 45.5 7.5 43 4.5 38"/>
+    <path transform="translate(108 0)" d="M31 4.5H4.5V45.5H31M4.5 25H27"/>`;
+
+  const SCHEMES = {
+    color:        { sun: '#FFA500', base: '#1F6FB2', word: '#1F6FB2' },
+    dark:         { sun: '#FFFFFF', base: '#FFFFFF', word: '#FFFFFF' },
+    mono:         { sun: '#1F2A2B', base: '#1F2A2B', word: '#1F2A2B' },
+    'mono-white': { sun: '#FFFFFF', base: '#FFFFFF', word: '#FFFFFF' },
+    awal:         { sun: '#E8A33D', base: '#0E5A5C', word: '#0E5A5C' }, // warna eksplorasi awal
+  };
+
+  // Simbol tiap konsep: transform penempatan di lockup, viewBox simbol saja, dan bentuknya.
+  const K = 50 / 51;
+  const MARKS = {
+    // Konsep A final (revisi): matahari r25, garis atas x-6..70, garis bawah x14..50.
+    A: { place: `translate(${6 * K} ${-10 * K}) scale(${K})`, box: '-8 8 80 55', width: 238,
+         draw: (c) => `<path d="M7 35A25 25 0 0 1 57 35Z" fill="${c.sun}"/><rect x="-6" y="42" width="76" height="8" rx="4" fill="${c.base}"/><rect x="14" y="54" width="36" height="7" rx="3.5" fill="${c.base}"/>`,
+         wordAt: 76 * K + 16 },
+    A0: { place: 'translate(-6 -12.5)', box: '4 12 56 51', width: 217.5,
+         draw: (c) => `<path d="M10 36A22 22 0 0 1 54 36Z" fill="${c.sun}"/><rect x="6" y="42" width="52" height="8" rx="4" fill="${c.base}"/><rect x="16" y="54" width="32" height="7" rx="3.5" fill="${c.base}"/>`,
+         wordAt: 70 },
+    B: { place: 'translate(-4.55 -5.45) scale(0.9091)', box: '4 5 56 57', width: 214.5,
+         draw: (c) => `<circle cx="32" cy="14" r="8" fill="${c.sun}"/><path d="M10 56L32 30L54 56" fill="none" stroke="${c.base}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>`,
+         wordAt: 67.09 },
+    C: { place: 'translate(-10.71 -3.57) scale(0.8929)', box: '11 9 46 52', width: 205,
+         draw: (c) => `<path d="M24 10H36A13 13 0 0 1 36 36H24Z" fill="${c.sun}"/><rect x="12" y="10" width="12" height="44" rx="6" fill="${c.base}"/><path d="M33 38L50 54" stroke="${c.base}" stroke-width="12" stroke-linecap="round" fill="none"/>`,
+         wordAt: 57.29 },
+  };
+
+  const lockup = (id, scheme) => {
+    const m = MARKS[id], c = SCHEMES[scheme];
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 ${m.width} 54" role="img" aria-label="Logo RISE">
+      <g transform="${m.place}">${m.draw(c)}</g>
+      <g transform="translate(${m.wordAt} 0)" fill="none" stroke="${c.word}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">${WORDMARK}</g>
+    </svg>`;
+  };
+
+  const symbol = (id, scheme) =>
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${MARKS[id].box}" role="img" aria-label="Simbol RISE">${MARKS[id].draw(SCHEMES[scheme])}</svg>`;
+
+  document.querySelectorAll('[data-logo]').forEach((el) =>
+    el.insertAdjacentHTML('afterbegin', lockup(el.dataset.logo, el.dataset.scheme)));
+  document.querySelectorAll('[data-mark]').forEach((el) =>
+    el.insertAdjacentHTML('afterbegin', symbol(el.dataset.mark, el.dataset.scheme)));
+
+  document.getElementById('appicon').insertAdjacentHTML('afterbegin',
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="App icon RISE"><rect width="512" height="512" fill="#1F6FB2"/><g transform="translate(112 96.25) scale(4.5)">${MARKS.A.draw(SCHEMES.dark)}</g></svg>`);
+
+  const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#1F6FB2"/><path d="M6 18.5A10 10 0 0 1 26 18.5Z" fill="#FFFFFF"/><rect x="3" y="21.5" width="26" height="3.5" rx="1.75" fill="#FFFFFF"/><rect x="10" y="26.5" width="12" height="2.5" rx="1.25" fill="#FFFFFF"/></svg>`;
+  document.getElementById('favs').innerHTML = [16, 32, 64].map((px) =>
+    `<figure>${FAVICON.replace('<svg ', `<svg width="${px}" height="${px}" `)}<figcaption>${px} px</figcaption></figure>`).join('');
+</script>
