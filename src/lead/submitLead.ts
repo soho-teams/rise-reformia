@@ -37,6 +37,7 @@ export async function submitLead(input: Record<string, unknown>, kebutuhan: Kebu
       persetujuanPdp: true,
       waktuPersetujuan: new Date().toISOString(),
       statusNotifikasi: 'gagal',
+      statusTindakLanjut: 'baru',
     },
   })
 

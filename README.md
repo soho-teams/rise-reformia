@@ -46,6 +46,8 @@ Kedua seam memakai `TEST_DATABASE_URL` (bawaan: `postgres://rise:rise@localhost:
 
 Form di `/kontak` mengirim lewat server action ke `submitLead` (`src/lead/submitLead.ts`), satu-satunya pintu masuk Lead: validasi, honeypot, rate limit 5 kiriman per IP per 10 menit, simpan, lalu notifikasi lewat `LeadNotifier`. Notifikasi memakai SMTP dari variabel `SMTP_*` (lihat `.env.example`) dan dikirim ke email tujuan yang diatur Admin di global **Pengaturan Situs**. Bila SMTP belum diatur atau gagal, Lead tetap tersimpan dengan status notifikasi `gagal`. Hanya Admin yang bisa melihat Lead. Rate limit membaca IP dari header `X-Real-IP`, jadi reverse proxy produksi wajib mengisinya dengan IP asli pengunjung (SOH-146); tanpa itu semua kiriman dianggap dari satu IP.
 
+Di panel admin, Admin menandai status tindak lanjut Lead (`baru`, `dihubungi`, `selesai`), menyaring dan mencari Lead, lalu mengekspor hasilnya lewat tombol di atas daftar (`GET /api/leads/ekspor-csv`, memakai parameter `where` dan `search` yang sama dengan daftar). CSV memakai pemisah koma dengan BOM UTF-8, dan isian yang bisa dibaca sebagai rumus spreadsheet dinetralkan. Menghapus Lead bersifat permanen (tidak ada versi atau tempat sampah), sesuai hak subjek data UU PDP.
+
 ## Insight
 
 Koleksi `insight` memakai drafts. Penulis menyusun draf miliknya sendiri. Editor ke atas menerbitkan, menarik, dan menyunting Insight siapa pun. Publik hanya melihat Insight yang terbit (`/insight`, `/insight/[slug]`). Setiap perubahan Insight memanggil `revalidasiSitus()` (`src/insight/revalidasi.ts`), jadi halaman yang sudah di-cache diperbarui tanpa deploy ulang.

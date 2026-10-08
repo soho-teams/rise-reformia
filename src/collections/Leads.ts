@@ -1,6 +1,8 @@
-import type { CollectionConfig } from 'payload'
+import { APIError, type CollectionConfig, type Where } from 'payload'
 
 import { minimal, punyaPeran } from '@/access/peran'
+import { KOLOM_PENCARIAN_LEAD, PILIHAN_STATUS_NOTIFIKASI, PILIHAN_STATUS_TINDAK_LANJUT } from '@/lead/daftarAdmin'
+import { eksporLeadCsv } from '@/lead/ekspor'
 import { BATAS_LEAD, PILIHAN_LAYANAN } from '@/lead/periksa'
 
 /** Permintaan konsultasi dari website. Berisi data pribadi (UU PDP): hanya Admin yang mengakses. */
@@ -9,7 +11,9 @@ export const Leads: CollectionConfig = {
   labels: { singular: 'Lead', plural: 'Lead' },
   admin: {
     useAsTitle: 'nama',
-    defaultColumns: ['nama', 'perusahaan', 'layanan', 'statusNotifikasi', 'createdAt'],
+    defaultColumns: ['createdAt', 'nama', 'perusahaan', 'layanan', 'statusTindakLanjut', 'statusNotifikasi'],
+    listSearchableFields: [...KOLOM_PENCARIAN_LEAD],
+    components: { beforeListTable: ['@/components/admin/TombolEksporLead#TombolEksporLead'] },
     hidden: ({ user }) => !punyaPeran(user, 'admin'),
   },
   access: {
@@ -19,6 +23,37 @@ export const Leads: CollectionConfig = {
     // Lead hanya dibuat lewat submitLead (server), tidak lewat REST atau GraphQL.
     create: () => false,
   },
+  defaultSort: '-createdAt',
+  endpoints: [
+    {
+      // GET /api/leads/ekspor-csv?where[...]: saringan sama dengan query daftar Lead di admin.
+      path: '/ekspor-csv',
+      method: 'get',
+      handler: async (req) => {
+        let csv: string
+        try {
+          // Pemeriksaan Admin ada di eksporLeadCsv; error Payload diteruskan sebagai status HTTP-nya
+          // (403 untuk bukan Admin, 400 untuk saringan yang salah bentuk).
+          csv = await eksporLeadCsv(req.payload, {
+            user: req.user,
+            where: req.query?.where as Where | undefined,
+            cari: typeof req.query?.search === 'string' ? req.query.search : undefined,
+          })
+        } catch (err) {
+          if (err instanceof APIError) return Response.json({ message: err.message }, { status: err.status })
+          throw err
+        }
+        const tanggal = new Date().toISOString().slice(0, 10)
+        return new Response(csv, {
+          headers: {
+            'Content-Type': 'text/csv; charset=utf-8',
+            'Content-Disposition': `attachment; filename="lead-rise-${tanggal}.csv"`,
+            'Cache-Control': 'no-store',
+          },
+        })
+      },
+    },
+  ],
   fields: [
     { name: 'nama', type: 'text', required: true, maxLength: BATAS_LEAD.nama },
     { name: 'perusahaan', type: 'text', required: true },
@@ -48,14 +83,21 @@ export const Leads: CollectionConfig = {
       ],
     },
     {
+      name: 'statusTindakLanjut',
+      label: 'Status tindak lanjut',
+      type: 'select',
+      required: true,
+      defaultValue: 'baru',
+      index: true,
+      options: [...PILIHAN_STATUS_TINDAK_LANJUT],
+      admin: { position: 'sidebar' },
+    },
+    {
       name: 'statusNotifikasi',
       type: 'select',
       required: true,
       defaultValue: 'gagal',
-      options: [
-        { label: 'Terkirim', value: 'terkirim' },
-        { label: 'Gagal', value: 'gagal' },
-      ],
+      options: [...PILIHAN_STATUS_NOTIFIKASI],
       admin: { position: 'sidebar' },
     },
   ],
