@@ -2,7 +2,7 @@ import type { CollectionConfig, Payload } from 'payload'
 
 import { minimal } from '@/access/peran'
 import { getMessages } from '@/i18n'
-import { revalidasiSitus } from '@/insight/revalidasi'
+import { revalidasiSitus } from '@/situs/revalidasi'
 import { SLUG_LAYANAN } from '@/layanan'
 
 /**

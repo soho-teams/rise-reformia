@@ -10,6 +10,7 @@ import { Layanan, pastikanLayanan } from './collections/Layanan'
 import { Leads } from './collections/Leads'
 import { Media } from './collections/Media'
 import { Users } from './collections/Users'
+import { PengaturanSitus, pastikanPengaturanSitus } from './globals/PengaturanSitus'
 import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
@@ -23,6 +24,7 @@ export default buildConfig({
     },
   },
   collections: [Insight, Layanan, Media, Users, Leads],
+  globals: [PengaturanSitus],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -36,6 +38,9 @@ export default buildConfig({
     prodMigrations: migrations,
   }),
   sharp,
-  onInit: pastikanLayanan,
+  onInit: async (payload) => {
+    await pastikanLayanan(payload)
+    await pastikanPengaturanSitus(payload)
+  },
   plugins: [],
 })

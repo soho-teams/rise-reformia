@@ -1,7 +1,7 @@
 import { Forbidden, type CollectionConfig, type Where } from 'payload'
 
 import { fieldMinimal, minimal, punyaPeran } from '@/access/peran'
-import { revalidasiSitus } from '@/insight/revalidasi'
+import { revalidasiSitus } from '@/situs/revalidasi'
 import { buatSlug } from '@/insight/slug'
 
 /**

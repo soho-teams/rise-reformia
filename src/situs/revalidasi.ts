@@ -1,8 +1,8 @@
 import { revalidatePath } from 'next/cache'
 
 /**
- * Membuang cache halaman publik setelah Insight berubah. Insight tampil di daftar, detail,
- * Beranda, dan halaman Layanan, jadi seluruh layout situs direvalidasi sekaligus.
+ * Membuang cache halaman publik setelah konten berubah (Insight, Layanan, Pengaturan Situs).
+ * Konten ini tampil di banyak halaman sekaligus, jadi seluruh layout situs direvalidasi.
  */
 export function revalidasiSitus(): void {
   try {

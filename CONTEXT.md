@@ -50,6 +50,10 @@ _Avoid_: Artikel, blog, berita, post
 Layanan yang menjadi topik sebuah Insight; setiap Insight punya tepat satu.
 _Avoid_: Tag, topik
 
+**Pengaturan Situs**:
+Informasi operasional website yang diubah Admin tanpa developer: kontak kantor, nomor WhatsApp dan pesan pembukanya, media sosial, serta email tujuan notifikasi Lead.
+_Avoid_: Konfigurasi, setting website
+
 ### Peran pengelola
 
 **Penulis**:
@@ -61,7 +65,7 @@ Anggota tim RISE yang meninjau dan menerbitkan Insight.
 _Avoid_: Reviewer, publisher
 
 **Admin**:
-Anggota tim RISE (pimpinan atau sales) yang berwenang melihat data Lead dan mengelola pengaturan website.
+Anggota tim RISE (pimpinan atau sales) yang berwenang melihat data Lead dan mengelola Pengaturan Situs.
 _Avoid_: Superuser, owner
 
 **Konsultan**:

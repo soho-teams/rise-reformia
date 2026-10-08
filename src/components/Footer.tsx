@@ -4,13 +4,16 @@ import Link from 'next/link'
 import { getMessages } from '@/i18n'
 import { SLUG_LAYANAN } from '@/layanan'
 import logoPutih from '../../docs/brand/logo/rise-logo-mono-white.svg'
-import { KONTAK_RISE } from '@/situs/kontak'
+import { pengaturanSitusHalaman } from '@/situs/pengaturan'
 import { RUTE, ruteLayanan } from '@/situs/rute'
+import { hrefTelepon, tampilNomorPonsel, tautanWhatsapp } from '@/situs/telepon'
 
 const t = getMessages()
 const f = t.layout.footer
 
-export function Footer() {
+export async function Footer() {
+  const kontak = await pengaturanSitusHalaman()
+  const alamat = kontak.alamat?.split('\n').map((baris) => baris.trim()).filter(Boolean) ?? []
   return (
     <footer className="footer">
       <div className="wadah footer__isi">
@@ -53,26 +56,28 @@ export function Footer() {
 
           <div className="footer__grup footer__kontak">
             <h2 className="footer__judul">{f.judulKontak}</h2>
-            <address>
-              {t.kontakRise.alamat.map((baris) => (
-                <span key={baris}>{baris}</span>
-              ))}
-            </address>
-            <a href={KONTAK_RISE.telepon.href}>
-              {f.telepon} {KONTAK_RISE.telepon.tampil}
+            {alamat.length > 0 && (
+              <address>
+                {alamat.map((baris, i) => (
+                  <span key={i}>{baris}</span>
+                ))}
+              </address>
+            )}
+            <a href={hrefTelepon(kontak.telepon)}>
+              {f.telepon} {kontak.telepon}
             </a>
-            <a href={`mailto:${KONTAK_RISE.email}`}>{KONTAK_RISE.email}</a>
-            {KONTAK_RISE.whatsapp && (
-              <a href={KONTAK_RISE.whatsapp.href}>
-                {f.whatsapp} {KONTAK_RISE.whatsapp.tampil}
+            <a href={`mailto:${kontak.emailKontak}`}>{kontak.emailKontak}</a>
+            {kontak.whatsapp && (
+              <a href={tautanWhatsapp(kontak.whatsapp, kontak.pesanWhatsapp)} rel="noopener" target="_blank">
+                {f.whatsapp} {tampilNomorPonsel(kontak.whatsapp)}
               </a>
             )}
-            <span>{t.kontakRise.jamLayanan}</span>
-            {KONTAK_RISE.mediaSosial.length > 0 && (
+            {kontak.jamLayanan && <span>{kontak.jamLayanan}</span>}
+            {kontak.mediaSosial && kontak.mediaSosial.length > 0 && (
               <ul aria-label={f.mediaSosial} className="footer__sosmed">
-                {KONTAK_RISE.mediaSosial.map(({ nama, href }) => (
-                  <li key={href}>
-                    <a href={href} rel="noopener" target="_blank">
+                {kontak.mediaSosial.map(({ id, nama, url }) => (
+                  <li key={id ?? url}>
+                    <a href={url} rel="noopener" target="_blank">
                       {nama}
                     </a>
                   </li>
