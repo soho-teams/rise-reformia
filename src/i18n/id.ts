@@ -50,6 +50,32 @@ export const id = {
     ],
     jamLayanan: 'Senin–Jumat, 08.00–17.00 WIB',
   },
+  // Copy dari docs/copy/global.md, bagian Halaman Insight (SOH-142).
+  insight: {
+    meta: {
+      title: 'Insight dari Tim RISE | Strategi, SDM, dan Bisnis',
+      description:
+        'Tulisan tim RISE seputar manajemen, psikologi industri dan organisasi, konsultasi bisnis, serta pengembangan kompetensi untuk HR, direksi, dan owner.',
+    },
+    metaDetail: (judul: string) => `${judul} | Insight RISE`,
+    judul: 'Insight',
+    subjudul: 'Tulisan dari tim RISE tentang strategi, SDM, dan pengembangan usaha.',
+    kosong: 'Belum ada Insight yang diterbitkan. Silakan kembali lagi segera.',
+    penulis: 'Tim RISE',
+    waktuBaca: (menit: number) => `${menit} menit baca`,
+    sebelumnya: 'Sebelumnya',
+    berikutnya: 'Berikutnya',
+    navigasiHalaman: 'Halaman daftar Insight',
+    halamanKe: (n: number, total: number) => `Halaman ${n} dari ${total}`,
+    ctaAkhir: 'Punya tantangan serupa di organisasi Anda? Ceritakan kepada kami.',
+    kembali: 'Semua Insight',
+    pratinjau: 'Anda melihat pratinjau draf. Halaman ini belum tampil untuk publik.',
+    keluarPratinjau: 'Keluar dari pratinjau',
+    rutePratinjau: {
+      perluMasuk: 'Masuk ke CMS untuk melihat pratinjau.',
+      slugTidakValid: 'Slug tidak valid.',
+    },
+  },
   halaman404: {
     meta: {
       title: 'Halaman tidak ditemukan | RISE',

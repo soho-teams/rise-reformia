@@ -19,8 +19,11 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   projects: [
+    { name: 'setup', testMatch: /.*\.setup\.ts/, use: { ...devices['Desktop Chrome'] } },
     {
       name: 'chromium',
+      testMatch: /.*\.e2e\.spec\.ts/,
+      dependencies: ['setup'],
       use: { ...devices['Desktop Chrome'] },
     },
   ],

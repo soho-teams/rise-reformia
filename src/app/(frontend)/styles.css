@@ -531,7 +531,8 @@ a:hover {
   object-fit: cover;
 }
 
-.kartu-insight__kategori {
+.kartu-insight__kategori,
+.detail-insight__kategori {
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   color: var(--color-primary);
@@ -835,6 +836,173 @@ a:hover {
   border-top: 1px solid var(--color-line-on-dark);
   font-size: var(--text-sm);
   color: var(--color-text-muted-on-dark);
+}
+
+/* ---------- Insight ---------- */
+
+.halaman-insight {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  padding-block: var(--space-8) var(--jarak-bagian);
+}
+
+.halaman-insight__kepala {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.halaman-insight__kepala p,
+.halaman-insight__kosong {
+  margin: 0;
+  max-width: 54ch;
+  font-size: var(--text-lead);
+}
+
+.grid-insight {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: var(--space-7) var(--space-6);
+}
+
+.kartu-insight__teks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Insight terbaru di halaman pertama: gambar dan teks berdampingan di layar lebar. */
+.kartu-insight--utama {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5) var(--space-7);
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.kartu-insight--utama .kartu-insight__sampul {
+  flex: 1 1 480px;
+  border-radius: var(--radius-lg);
+}
+
+.kartu-insight--utama .kartu-insight__teks {
+  flex: 1 1 360px;
+  min-width: 0;
+}
+
+.kartu-insight--utama .kartu-insight__judul {
+  font-size: var(--judul-2);
+  line-height: 1.15;
+}
+
+.kartu-insight--utama .kartu-insight__ringkasan {
+  font-size: var(--text-body);
+}
+
+.paginasi {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.paginasi a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target-sentuh);
+  font-weight: var(--weight-semibold);
+}
+
+.detail-insight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-7);
+  padding-block: var(--space-7) var(--jarak-bagian);
+}
+
+.detail-insight > * {
+  width: 100%;
+  max-width: 68ch;
+}
+
+.detail-insight__pratinjau {
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  font-weight: var(--weight-semibold);
+}
+
+.detail-insight__pratinjau a {
+  color: inherit;
+}
+
+.detail-insight__kepala {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.detail-insight__kembali {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  min-height: var(--target-sentuh);
+  font-weight: var(--weight-semibold);
+}
+
+.detail-insight__ringkasan {
+  margin: 0;
+  font-size: var(--text-xl);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.detail-insight__meta {
+  margin: 0;
+  padding-top: var(--space-3);
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+}
+
+.detail-insight .detail-insight__sampul {
+  max-width: 1072px;
+  margin: 0;
+}
+
+.detail-insight__sampul img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+.detail-insight__cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  background: var(--color-dark-bg);
+  color: var(--color-on-primary);
+  --color-focus-ring: var(--color-focus-ring-on-dark);
+}
+
+.detail-insight__cta p {
+  flex: 1 1 280px;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
 }
 
 /* ---------- Halaman 404 ---------- */

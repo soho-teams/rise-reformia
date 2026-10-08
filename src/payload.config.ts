@@ -5,9 +5,11 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
-import { Users } from './collections/Users'
+import { Insight } from './collections/Insight'
+import { Layanan, pastikanLayanan } from './collections/Layanan'
 import { Leads } from './collections/Leads'
 import { Media } from './collections/Media'
+import { Users } from './collections/Users'
 import { migrations } from './migrations'
 
 const filename = fileURLToPath(import.meta.url)
@@ -20,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Leads],
+  collections: [Insight, Layanan, Media, Users, Leads],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -34,5 +36,6 @@ export default buildConfig({
     prodMigrations: migrations,
   }),
   sharp,
+  onInit: pastikanLayanan,
   plugins: [],
 })
