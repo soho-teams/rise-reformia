@@ -40,6 +40,10 @@ Pengaman di koleksi Pengguna: pengguna pertama otomatis Admin, Admin terakhir ti
 
 Kedua seam memakai `TEST_DATABASE_URL` (bawaan: `postgres://rise:rise@localhost:5432/rise_test`). **Isi database ini dihapus setiap kali tes berjalan**, jadi jangan arahkan ke database dev atau produksi. Sekali saja sebelum `test:e2e` pertama, jalankan `pnpm exec playwright install chromium`.
 
+## Lead (permintaan konsultasi)
+
+Form di `/kontak` mengirim lewat server action ke `submitLead` (`src/lead/submitLead.ts`), satu-satunya pintu masuk Lead: validasi, honeypot, rate limit 5 kiriman per IP per 10 menit, simpan, lalu notifikasi lewat `LeadNotifier`. Notifikasi memakai SMTP dari variabel `SMTP_*` dan `LEAD_NOTIFY_TO` (lihat `.env.example`). Bila SMTP belum diatur atau gagal, Lead tetap tersimpan dengan status notifikasi `gagal`. Hanya Admin yang bisa melihat Lead. Rate limit membaca IP dari header `X-Real-IP`, jadi reverse proxy produksi wajib mengisinya dengan IP asli pengunjung (SOH-146); tanpa itu semua kiriman dianggap dari satu IP.
+
 ## Database dan migrasi
 
 - Dev dan tes: Payload melakukan push schema secara otomatis.
