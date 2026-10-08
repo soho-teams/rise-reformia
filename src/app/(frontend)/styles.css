@@ -16,3 +16,25 @@ body {
   padding: 0 16px;
   text-align: center;
 }
+
+/* Form Lead sementara (SOH-148); desain final di SOH-153. */
+.halaman-kontak { max-width: 720px; margin: 0 auto; padding: 48px 16px 80px; display: grid; gap: 16px; }
+.halaman-kontak h1 { margin: 0; font-size: 2.5rem; line-height: 1.1; }
+.subjudul, .bantuan { color: #5b6665; margin: 0; }
+.form-lead { display: grid; gap: 20px; }
+.grid-isian { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px 24px; }
+.isian { display: grid; gap: 6px; }
+.isian label { font-weight: 600; }
+.opsional { font-weight: 400; color: #5b6665; }
+.isian input, .isian select, .isian textarea { box-sizing: border-box; width: 100%; min-height: 48px; padding: 10px 14px; border: 1.5px solid #8c8578; border-radius: 10px; font: inherit; background: #fff; color: inherit; }
+.isian [aria-invalid='true'] { border: 2px solid #b3261e; }
+.error { margin: 0; color: #b3261e; font-size: 0.875rem; }
+.ringkasan-error { padding: 14px 16px; border-radius: 10px; background: #fdecea; color: #b3261e; font-weight: 600; }
+.persetujuan { display: flex; gap: 12px; align-items: flex-start; }
+.persetujuan input { width: 22px; height: 22px; min-height: 0; margin-top: 2px; accent-color: #1f6fb2; }
+.honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.aksi-form { display: grid; gap: 8px; }
+.aksi-form button { min-height: 52px; padding: 0 26px; border: 0; border-radius: 10px; background: #1f6fb2; color: #fff; font: 600 1rem inherit; cursor: pointer; justify-self: start; }
+.aksi-form button:disabled { opacity: 0.7; cursor: progress; }
+.panel-sukses { padding: 28px; border-radius: 14px; background: #fff; border: 1px solid #e7e0d3; }
+.judul-sukses { margin: 0 0 8px; font-size: 1.5rem; font-weight: 800; }

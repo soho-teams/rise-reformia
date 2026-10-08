@@ -17,3 +17,7 @@ export const kosongkanPengguna = async (payload: Payload): Promise<void> => {
     context: { [LEWATI_PENGAMAN_ADMIN]: true },
   })
 }
+
+export const kosongkanLead = async (payload: Payload): Promise<void> => {
+  await payload.delete({ collection: 'leads', where: { id: { exists: true } } })
+}
