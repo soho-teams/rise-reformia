@@ -1,0 +1,18 @@
+/* Placeholder sampai design system (SOH-144) memasang token brand. */
+html {
+  font-family: system-ui, sans-serif;
+  color: #1f2a2b;
+  background: #fbf8f3;
+}
+
+body {
+  margin: 0;
+}
+
+.placeholder {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  padding: 0 16px;
+  text-align: center;
+}

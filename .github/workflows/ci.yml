@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: rise
+          POSTGRES_PASSWORD: rise
+          POSTGRES_DB: rise_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U rise -d rise_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgres://rise:rise@localhost:5432/rise_test
+      # `next build` memuat payload.config; nilai ini hanya untuk CI.
+      DATABASE_URL: postgres://rise:rise@localhost:5432/rise_test
+      PAYLOAD_SECRET: rahasia-khusus-ci
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - name: Seam 1 — Payload Local API
+        run: pnpm test:int
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Seam 2 — smoke E2E pada build produksi
+        run: pnpm test:e2e
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build image produksi
+        run: docker build --tag rise-reformia:ci .

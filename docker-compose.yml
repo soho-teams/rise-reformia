@@ -1,0 +1,42 @@
+# Lingkungan dev lokal: `docker compose up`, lalu buka http://localhost:3000
+services:
+  app:
+    image: node:22-alpine
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    working_dir: /home/node/app/
+    command: sh -c "corepack enable && pnpm install && pnpm dev"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      DATABASE_URL: postgres://rise:rise@postgres:5432/rise
+      # Nilai dev saja; produksi memakai secret sendiri.
+      PAYLOAD_SECRET: ${PAYLOAD_SECRET:-rahasia-dev-lokal}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rise
+      POSTGRES_PASSWORD: rise
+      POSTGRES_DB: rise
+    ports:
+      - '5432:5432'
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U rise -d rise']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pgdata:
+  node_modules:
