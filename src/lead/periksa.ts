@@ -1,14 +1,9 @@
 import { getMessages } from '@/i18n'
+import { SLUG_LAYANAN } from '@/layanan'
 
 const t = getMessages().lead
 
-export const LAYANAN_LEAD = [
-  'konsultasi-manajemen',
-  'psikologi-industri-organisasi',
-  'konsultasi-bisnis',
-  'training-pengembangan',
-  'belum-yakin',
-] as const
+export const LAYANAN_LEAD = [...SLUG_LAYANAN, 'belum-yakin'] as const
 export type LayananLead = (typeof LAYANAN_LEAD)[number]
 
 export const PILIHAN_LAYANAN = LAYANAN_LEAD.map((value) => ({ value, label: t.layanan[value] }))

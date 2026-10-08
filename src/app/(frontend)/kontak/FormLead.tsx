@@ -2,6 +2,8 @@
 
 import { useActionState } from 'react'
 
+import { Centang, Isian } from '@/components/Isian'
+import { kelasTombol } from '@/components/Tombol'
 import { getMessages } from '@/i18n'
 import { FIELD_HONEYPOT, LAYANAN_LEAD, type FieldLead } from '@/lead/periksa'
 import { kirimLead, type StateFormLead } from './actions'
@@ -9,7 +11,7 @@ import { kirimLead, type StateFormLead } from './actions'
 const t = getMessages().lead
 const AWAL: StateFormLead = { status: 'awal', errors: {}, nilai: {}, percobaan: 0 }
 
-type PropsIsian = {
+type PropsTeks = {
   nama: Exclude<FieldLead, 'layanan' | 'pesan' | 'persetujuan'>
   tipe?: 'text' | 'email' | 'tel'
   autoComplete: string
@@ -18,28 +20,26 @@ type PropsIsian = {
   state: StateFormLead
 }
 
-function Isian({ nama, tipe = 'text', autoComplete, opsional, bantuan, state }: PropsIsian) {
-  const error = state.errors[nama]
-  const idBantuan = bantuan ? `b-${nama}` : undefined
-  const idError = error ? `e-${nama}` : undefined
+function IsianTeks({ nama, tipe = 'text', autoComplete, opsional, bantuan, state }: PropsTeks) {
   return (
-    <div className="isian">
-      <label htmlFor={`f-${nama}`}>
-        {t.label[nama]} {opsional && <span className="opsional">{t.label.opsional}</span>}
-      </label>
-      <input
-        id={`f-${nama}`}
-        name={nama}
-        type={tipe}
-        autoComplete={autoComplete}
-        placeholder={t.placeholder[nama]}
-        defaultValue={state.nilai[nama] ?? ''}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={[idBantuan, idError].filter(Boolean).join(' ') || undefined}
-      />
-      {bantuan && <p id={idBantuan} className="bantuan">{bantuan}</p>}
-      {error && <p id={idError} className="error">{error}</p>}
-    </div>
+    <Isian
+      id={`f-${nama}`}
+      label={t.label[nama]}
+      penanda={opsional ? t.label.opsional : undefined}
+      bantuan={bantuan}
+      error={state.errors[nama]}
+    >
+      {(kontrol) => (
+        <input
+          {...kontrol}
+          name={nama}
+          type={tipe}
+          autoComplete={autoComplete}
+          placeholder={t.placeholder[nama]}
+          defaultValue={state.nilai[nama] ?? ''}
+        />
+      )}
+    </Isian>
   )
 }
 
@@ -75,60 +75,38 @@ export function FormLead() {
       )}
 
       <div className="grid-isian">
-        <Isian nama="nama" autoComplete="name" state={state} />
-        <Isian nama="perusahaan" autoComplete="organization" state={state} />
-        <Isian nama="jabatan" autoComplete="organization-title" state={state} />
-        <Isian nama="email" tipe="email" autoComplete="email" bantuan={t.bantuan.email} state={state} />
-        <Isian nama="telepon" tipe="tel" autoComplete="tel" opsional bantuan={t.bantuan.telepon} state={state} />
-        <div className="isian">
-          <label htmlFor="f-layanan">{t.label.layanan}</label>
-          <select
-            id="f-layanan"
-            name="layanan"
-            defaultValue={state.nilai.layanan ?? ''}
-            aria-invalid={err.layanan ? true : undefined}
-            aria-describedby={err.layanan ? 'e-layanan' : undefined}
-          >
-            <option value="">{t.label.pilihLayanan}</option>
-            {LAYANAN_LEAD.map((slug) => (
-              <option key={slug} value={slug}>
-                {t.layanan[slug]}
-              </option>
-            ))}
-          </select>
-          {err.layanan && <p id="e-layanan" className="error">{err.layanan}</p>}
-        </div>
+        <IsianTeks nama="nama" autoComplete="name" state={state} />
+        <IsianTeks nama="perusahaan" autoComplete="organization" state={state} />
+        <IsianTeks nama="jabatan" autoComplete="organization-title" state={state} />
+        <IsianTeks nama="email" tipe="email" autoComplete="email" bantuan={t.bantuan.email} state={state} />
+        <IsianTeks nama="telepon" tipe="tel" autoComplete="tel" opsional bantuan={t.bantuan.telepon} state={state} />
+        <Isian id="f-layanan" label={t.label.layanan} error={err.layanan}>
+          {(kontrol) => (
+            <select {...kontrol} name="layanan" defaultValue={state.nilai.layanan ?? ''}>
+              <option value="">{t.label.pilihLayanan}</option>
+              {LAYANAN_LEAD.map((slug) => (
+                <option key={slug} value={slug}>
+                  {t.layanan[slug]}
+                </option>
+              ))}
+            </select>
+          )}
+        </Isian>
       </div>
 
-      <div className="isian">
-        <label htmlFor="f-pesan">{t.label.pesan}</label>
-        <textarea
-          id="f-pesan"
-          name="pesan"
-          rows={5}
-          placeholder={t.placeholder.pesan}
-          defaultValue={state.nilai.pesan ?? ''}
-          aria-invalid={err.pesan ? true : undefined}
-          aria-describedby={['b-pesan', err.pesan ? 'e-pesan' : ''].filter(Boolean).join(' ')}
-        />
-        <p id="b-pesan" className="bantuan">{t.bantuan.pesan}</p>
-        {err.pesan && <p id="e-pesan" className="error">{err.pesan}</p>}
-      </div>
+      <Isian id="f-pesan" label={t.label.pesan} bantuan={t.bantuan.pesan} error={err.pesan}>
+        {(kontrol) => (
+          <textarea {...kontrol} name="pesan" rows={5} placeholder={t.placeholder.pesan} defaultValue={state.nilai.pesan ?? ''} />
+        )}
+      </Isian>
 
-      <div className="isian">
-        <div className="persetujuan">
-          <input
-            id="f-persetujuan"
-            name="persetujuan"
-            type="checkbox"
-            defaultChecked={state.nilai.persetujuan === 'on'}
-            aria-invalid={err.persetujuan ? true : undefined}
-            aria-describedby={err.persetujuan ? 'e-persetujuan' : undefined}
-          />
-          <label htmlFor="f-persetujuan">{t.persetujuan}</label>
-        </div>
-        {err.persetujuan && <p id="e-persetujuan" className="error">{err.persetujuan}</p>}
-      </div>
+      <Centang
+        id="f-persetujuan"
+        name="persetujuan"
+        label={t.persetujuan}
+        error={err.persetujuan}
+        defaultChecked={state.nilai.persetujuan === 'on'}
+      />
 
       {/* Honeypot: tersembunyi dari pengunjung dan pembaca layar, hanya diisi bot. */}
       <div aria-hidden="true" className="honeypot">
@@ -137,10 +115,10 @@ export function FormLead() {
       </div>
 
       <div className="aksi-form">
-        <button type="submit" disabled={mengirim}>
+        <button type="submit" disabled={mengirim} className={kelasTombol('utama')}>
           {mengirim ? t.tombol.mengirim : t.tombol.kirim}
         </button>
-        <p className="bantuan">{t.catatanPrivasi}</p>
+        <p>{t.catatanPrivasi}</p>
       </div>
     </form>
   )

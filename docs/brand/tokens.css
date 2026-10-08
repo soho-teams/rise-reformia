@@ -18,6 +18,9 @@
   --color-text-muted: #5B6665;
   --color-text-inverse: #FBF8F3;
   --color-dark-bg: #123A66;
+  --color-text-muted-on-dark: #D3DEEC;
+  --color-line-on-dark: #4A6890;
+  --color-whatsapp: #128C7E;
   --color-success: #27704A;
   --color-success-bg: #EAF4EE;
   --color-warning: #8A5A00;
@@ -39,8 +42,11 @@
   --weight-extrabold: 800;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
+  --text-md: 0.9375rem;
   --text-base: 1rem;
+  --text-body: 1.0625rem;
   --text-lg: 1.125rem;
+  --text-lead: 1.1875rem;
   --text-xl: 1.25rem;
   --text-2xl: 1.5rem;
   --text-3xl: 1.875rem;

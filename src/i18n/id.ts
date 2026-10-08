@@ -5,10 +5,64 @@ const site = {
     'RISE (Reformia Inspirasi Semesta) adalah mitra konsultan manajemen, psikologi industri & organisasi, konsultasi bisnis, serta training & pengembangan.',
 }
 
+const layanan = {
+  'konsultasi-manajemen': 'Konsultasi Manajemen',
+  'psikologi-industri-organisasi': 'Psikologi Industri & Organisasi',
+  'konsultasi-bisnis': 'Konsultasi Bisnis',
+  'training-pengembangan': 'Training & Pengembangan',
+}
+
 export const id = {
   site,
+  layanan,
+  // Copy dari docs/copy/global.md (SOH-142).
+  layout: {
+    lompat: 'Lewati ke konten utama',
+    logoLabel: 'RISE, Beranda',
+    navLabel: 'Navigasi utama',
+    nav: { beranda: 'Beranda', layanan: 'Layanan', insight: 'Insight', tentangKami: 'Tentang Kami', kontak: 'Kontak' },
+    menu: 'Menu',
+    cta: 'Jadwalkan konsultasi',
+    // Label CTA di header ponsel, tempat label lengkap tidak muat di samping logo dan tombol Menu.
+    ctaPendek: 'Konsultasi',
+    kartu: { lihatLayanan: 'Lihat Layanan' },
+    footer: {
+      tagline: 'Menata organisasi dengan cara yang manusiawi.',
+      deskripsi:
+        'RISE (Reformia Inspirasi Semesta) mendampingi organisasi dan pemilik usaha lewat konsultasi manajemen, psikologi industri dan organisasi, konsultasi bisnis, serta pengembangan kompetensi.',
+      judulLayanan: 'Layanan',
+      judulPerusahaan: 'Perusahaan',
+      judulKontak: 'Hubungi kami',
+      telepon: 'Telepon',
+      whatsapp: 'WhatsApp',
+      mediaSosial: 'Media sosial',
+      kebijakanPrivasi: 'Kebijakan Privasi',
+      hakCipta: (tahun: number) => `© ${tahun} Reformia Inspirasi Semesta. Hak cipta dilindungi.`,
+    },
+  },
+  // Data kontak resmi RISE (8 Oktober 2026); pindah ke Pengaturan Situs di SOH-150.
+  kontakRise: {
+    alamat: [
+      'Ged. Bintaro Business Center',
+      'Jl. RC Veteran No. 1-i, RT 001/RW 003',
+      'Kel. Bintaro, Kec. Pesanggrahan',
+      'Jakarta Selatan 12330',
+    ],
+    jamLayanan: 'Senin–Jumat, 08.00–17.00 WIB',
+  },
+  halaman404: {
+    meta: {
+      title: 'Halaman tidak ditemukan | RISE',
+      description: 'Halaman yang Anda cari tidak ditemukan. Kembali ke Beranda atau hubungi tim RISE.',
+    },
+    judul: 'Halaman ini tidak ditemukan.',
+    isi: 'Tautan yang Anda buka mungkin sudah berubah atau salah ketik. Mari kembali ke jalur yang tepat.',
+    beranda: 'Kembali ke Beranda',
+    layanan: 'Lihat Layanan kami',
+    kontak: 'Hubungi kami',
+  },
   home: {
-    placeholderTitle: `${site.name} — ${site.legalName}`,
+    placeholderTitle: `${site.legalName} (${site.name})`,
     placeholderBody: 'Website kami sedang disiapkan. Nantikan segera.',
   },
   // Copy dari docs/copy/kontak.md (SOH-142).
@@ -48,10 +102,7 @@ export const id = {
       pesan: 'Beberapa kalimat sudah cukup.',
     },
     layanan: {
-      'konsultasi-manajemen': 'Konsultasi Manajemen',
-      'psikologi-industri-organisasi': 'Psikologi Industri & Organisasi',
-      'konsultasi-bisnis': 'Konsultasi Bisnis',
-      'training-pengembangan': 'Training & Pengembangan',
+      ...layanan,
       'belum-yakin': 'Belum yakin / perlu diskusi',
     },
     persetujuan:
