@@ -6,9 +6,9 @@
   /* Layout: lembar presentasi brand. Logo tampil di "papan" berwarna tetap sesuai latar yang dituju,
      sementara bingkai halaman mengikuti tema pembaca. Token warna diturunkan dari docs/brand/tokens.css. */
   :root {
-    --teal: #0E5A5C;
-    --teal-deep: #0A4547;
-    --amber: #E8A33D;
+    --blue: #1F6FB2;
+    --navy: #123A66;
+    --amber: #FFA500;
     --cream: #FBF8F3;
     --sand: #F1EBE0;
     --ink: #1F2A2B;
@@ -18,9 +18,9 @@
     --fg: var(--ink);
     --muted: #5B6665;
     --line: #D9D1C3;
-    --accent: var(--teal);
-    --chip-bg: #E3F0EF;
-    --chip-fg: var(--teal);
+    --accent: var(--blue);
+    --chip-bg: #E7F0F8;
+    --chip-fg: #185A91;
 
     --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
@@ -28,13 +28,13 @@
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0F1A1B; --surface: #152425; --fg: #EEE9E0; --muted: #A3ADAC; --line: #2A3B3C;
-      --accent: #7FC4C2; --chip-bg: #1C3536; --chip-fg: #9ED6D3; color-scheme: dark;
+      --bg: #0E1620; --surface: #142131; --fg: #EEE9E0; --muted: #A3ADB8; --line: #25354A;
+      --accent: #8CC0EC; --chip-bg: #1A3350; --chip-fg: #A9CFF0; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0F1A1B; --surface: #152425; --fg: #EEE9E0; --muted: #A3ADAC; --line: #2A3B3C;
-    --accent: #7FC4C2; --chip-bg: #1C3536; --chip-fg: #9ED6D3; color-scheme: dark;
+    --bg: #0E1620; --surface: #142131; --fg: #EEE9E0; --muted: #A3ADB8; --line: #25354A;
+    --accent: #8CC0EC; --chip-bg: #1A3350; --chip-fg: #A9CFF0; color-scheme: dark;
   }
 
   body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 1rem; line-height: 1.6; }
@@ -61,12 +61,12 @@
   .board svg { width: 100%; height: auto; display: block; }
   .board.cream { background: var(--cream); box-shadow: inset 0 0 0 1px #E7E0D3; }
   .board.white { background: #FFFFFF; box-shadow: inset 0 0 0 1px #E7E0D3; }
-  .board.teal { background: var(--teal); }
-  .board.deep { background: var(--teal-deep); }
+  .board.blue { background: var(--blue); }
+  .board.navy { background: var(--navy); }
   .board.sand { background: var(--sand); }
   .board .tag { position: absolute; left: 14px; bottom: 10px; font-size: .75rem; font-weight: 500; }
   .board.cream .tag, .board.white .tag, .board.sand .tag { color: #5B6665; }
-  .board.teal .tag, .board.deep .tag { color: #CFE3E2; }
+  .board.blue .tag, .board.navy .tag { color: #DCE9F5; }
   .hero-board { padding: 64px 24px; min-height: 260px; }
   .hero-board svg { max-width: 560px; }
 
@@ -124,12 +124,12 @@
   .mock .hero p { color: #5B6665; font-size: 1.05rem; }
   .mock .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn { font-family: var(--font-body); font-weight: 600; font-size: .95rem; padding: 12px 20px; border-radius: 10px; border: 0; }
-  .btn.primary { background: var(--teal); color: #FFFFFF; }
+  .btn.primary { background: var(--blue); color: #FFFFFF; }
   .btn.secondary { background: var(--amber); color: var(--ink); }
-  .btn.ghost { background: transparent; color: var(--teal); box-shadow: inset 0 0 0 1.5px var(--teal); }
-  .mock .band { background: var(--teal-deep); color: #FBF8F3; padding: 24px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .btn.ghost { background: transparent; color: var(--blue); box-shadow: inset 0 0 0 1.5px var(--blue); }
+  .mock .band { background: var(--navy); color: #FBF8F3; padding: 24px; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
   .mock .band svg { height: 26px; width: auto; display: block; }
-  .mock .band span { font-size: .9rem; color: #CFE3E2; }
+  .mock .band span { font-size: .9rem; color: #DCE9F5; }
 
   /* Catatan */
   .notes { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
@@ -143,7 +143,7 @@
     <span class="eyebrow">SOH-140 · Brand RISE</span>
     <h1>Identitas visual RISE</h1>
     <p class="muted">Reformia Inspirasi Semesta. Tiga konsep logo yang dipertimbangkan dan konsep terpilih, beserta palet warna dan tipografi yang akan dipakai website rise-reformia.id. Karakternya modern-hangat: profesional untuk Klien B2B, tetapi tetap humanis.</p>
-    <span class="status">Konsep A dipilih · 8 Oktober 2026</span>
+    <span class="status">Konsep A dipilih dan direvisi · 8 Oktober 2026</span>
     <div class="board cream hero-board" data-logo="A" data-scheme="color" aria-label="Logo RISE konsep Fajar"></div>
   </header>
 
@@ -151,19 +151,19 @@
     <div class="head">
       <span class="eyebrow">Pilihan konsep</span>
       <h2>Tiga arah simbol, satu wordmark</h2>
-      <p class="muted">Ketiganya memakai huruf RISE yang sama, digambar tangan dengan ujung membulat. Yang berbeda hanya simbol di depannya.</p>
+      <p class="muted">Versi awal eksplorasi, ditampilkan sebagai arsip. Ketiganya memakai huruf RISE yang sama; yang berbeda hanya simbol di depannya. Konsep A dipilih lalu direvisi ke biru laut (lihat logo di atas).</p>
     </div>
     <div class="concepts">
       <article class="concept pick">
-        <div class="board cream" data-logo="A" data-scheme="color"></div>
+        <div class="board cream" data-logo="A0" data-scheme="awal"></div>
         <div class="body">
           <div class="title"><h3>A · Fajar</h3><span class="badge">Dipilih</span></div>
           <p>Matahari separuh terbit di atas dua garis cakrawala. Langsung menerjemahkan "RISE" dan "Inspirasi" tanpa klise globe atau panah naik. Garis yang bertumpuk juga bisa dibaca sebagai Layanan yang saling menopang.</p>
-          <p class="muted risk">Tiga bentuk solid saja, jadi tetap terbaca di ukuran favicon 16 px.</p>
+          <p class="muted risk">Direvisi: garis dan tulisan biru laut, matahari amber lebih besar, garis atas lebih panjang.</p>
         </div>
       </article>
       <article class="concept">
-        <div class="board cream" data-logo="B" data-scheme="color"></div>
+        <div class="board cream" data-logo="B" data-scheme="awal"></div>
         <div class="body">
           <div class="title"><h3>B · Tunas Insan</h3></div>
           <p>Sosok manusia dengan lengan terangkat. Menonjolkan sisi manusia dan Layanan Psikologi Industri &amp; Organisasi.</p>
@@ -171,7 +171,7 @@
         </div>
       </article>
       <article class="concept">
-        <div class="board cream" data-logo="C" data-scheme="color"></div>
+        <div class="board cream" data-logo="C" data-scheme="awal"></div>
         <div class="body">
           <div class="title"><h3>C · Monogram R</h3></div>
           <p>Huruf R dari batang teal dan setengah lingkaran amber. Tegas dan mudah diingat.</p>
@@ -185,13 +185,13 @@
     <div class="head">
       <span class="eyebrow">Konsep A dalam pemakaian</span>
       <h2>Varian logo</h2>
-      <p class="muted">Setiap varian punya latar yang dituju. Amber tetap dipakai di latar gelap karena kontrasnya cukup; di latar terang amber hanya untuk simbol, tidak untuk teks.</p>
+      <p class="muted">Warna penuh hanya untuk latar terang. Di atas latar biru atau gelap, logo putih seluruhnya, termasuk mataharinya.</p>
     </div>
     <div class="variants">
       <div class="board cream" data-logo="A" data-scheme="color"><span class="tag">Warna penuh · latar terang</span></div>
-      <div class="board deep" data-logo="A" data-scheme="dark"><span class="tag">Latar gelap</span></div>
+      <div class="board navy" data-logo="A" data-scheme="dark"><span class="tag">Latar gelap · putih seluruhnya</span></div>
       <div class="board white" data-logo="A" data-scheme="mono"><span class="tag">Monokrom tinta</span></div>
-      <div class="board teal" data-logo="A" data-scheme="mono-white"><span class="tag">Monokrom putih</span></div>
+      <div class="board blue" data-logo="A" data-scheme="mono-white"><span class="tag">Latar biru laut · putih seluruhnya</span></div>
     </div>
     <div class="icons">
       <div class="board sand symbol" data-mark="A" data-scheme="color"><span class="tag">Simbol</span></div>
@@ -203,22 +203,22 @@
   <section>
     <div class="head">
       <span class="eyebrow">Palet warna</span>
-      <h2>Teal yang tenang, dihangatkan cahaya fajar</h2>
+      <h2>Biru laut yang tenang, dihangatkan matahari terbit</h2>
       <p class="muted">Rasio kontras dihitung dengan rumus WCAG 2.x. Batas AA: 4,5 untuk teks biasa, 3 untuk teks besar dan komponen UI.</p>
     </div>
     <div class="palette">
-      <div class="swatch"><div class="chip" style="background:#0E5A5C;color:#FFFFFF">Teal</div>
-        <div class="info"><strong>Primer</strong><span class="hex">#0E5A5C</span><span class="ratio">Teks putih di atasnya 7,97</span><span class="muted">Tombol utama, tautan, judul aksen</span></div></div>
-      <div class="swatch"><div class="chip" style="background:#E8A33D;color:#1F2A2B">Amber</div>
-        <div class="info"><strong>Sekunder</strong><span class="hex">#E8A33D</span><span class="ratio">Teks tinta di atasnya 6,84</span><span class="ratio warn">Sebagai teks di latar putih 2,16, jangan dipakai</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#1F6FB2;color:#FFFFFF">Biru laut</div>
+        <div class="info"><strong>Primer</strong><span class="hex">#1F6FB2</span><span class="ratio">Teks putih di atasnya 5,28</span><span class="muted">Logo, tombol utama, tautan</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#FFA500;color:#1F2A2B">Amber</div>
+        <div class="info"><strong>Sekunder</strong><span class="hex">#FFA500</span><span class="ratio">Teks tinta di atasnya 7,47</span><span class="ratio warn">Sebagai teks di latar terang 1,86 sampai 1,97, jangan dipakai</span></div></div>
       <div class="swatch"><div class="chip" style="background:#B4531F;color:#FFFFFF">Terakota</div>
         <div class="info"><strong>Aksen</strong><span class="hex">#B4531F</span><span class="ratio">Teks di latar krem 4,72</span><span class="muted">Dipakai hemat: sorotan dan angka</span></div></div>
       <div class="swatch"><div class="chip" style="background:#FBF8F3;color:#1F2A2B;box-shadow:inset 0 -1px 0 #E7E0D3">Krem</div>
-        <div class="info"><strong>Latar halaman</strong><span class="hex">#FBF8F3</span><span class="ratio">Teks tinta di atasnya 13,92</span><span class="muted">Pengganti putih dingin</span></div></div>
+        <div class="info"><strong>Latar halaman</strong><span class="hex">#FBF8F3</span><span class="ratio">Biru laut di atasnya 4,99</span><span class="muted">Pengganti putih dingin</span></div></div>
       <div class="swatch"><div class="chip" style="background:#1F2A2B;color:#FBF8F3">Tinta</div>
-        <div class="info"><strong>Teks utama</strong><span class="hex">#1F2A2B</span><span class="ratio">Teks redup #5B6665 di krem 5,61</span><span class="muted">Teks, logo monokrom</span></div></div>
-      <div class="swatch"><div class="chip" style="background:#0A4547;color:#FBF8F3">Teal tua</div>
-        <div class="info"><strong>Latar gelap</strong><span class="hex">#0A4547</span><span class="ratio">Teks krem di atasnya 10,14</span><span class="muted">Footer, seksi kontras, hover</span></div></div>
+        <div class="info"><strong>Teks utama</strong><span class="hex">#1F2A2B</span><span class="ratio">Di latar krem 13,92</span><span class="muted">Teks, logo monokrom</span></div></div>
+      <div class="swatch"><div class="chip" style="background:#123A66;color:#FFFFFF">Navy</div>
+        <div class="info"><strong>Latar gelap</strong><span class="hex">#123A66</span><span class="ratio">Teks putih di atasnya 11,52</span><span class="muted">Footer, seksi kontras</span></div></div>
     </div>
     <div class="status-row" aria-label="Warna status">
       <span class="status-pill" style="background:#EAF4EE;color:#27704A">Sukses 5,33</span>
@@ -279,7 +279,7 @@
       <h2>Setelah konsep dipilih</h2>
     </div>
     <ul class="notes">
-      <li><span>Konsep A (Fajar) dipilih. Palet dan tipografi di halaman ini menjadi dasar desain website.</span></li>
+      <li><span>Konsep A (Fajar) dipilih dan direvisi ke biru laut. Palet dan tipografi di halaman ini menjadi dasar desain website.</span></li>
       <li><span>Bentuk huruf wordmark, terutama "S", dirapikan lagi oleh desainer sebelum dipakai di materi cetak.</span></li>
       <li><span>Versi vertikal (simbol di atas tulisan) dan favicon .ico menyusul.</span></li>
     </ul>
@@ -296,15 +296,21 @@
     <path transform="translate(108 0)" d="M31 4.5H4.5V45.5H31M4.5 25H27"/>`;
 
   const SCHEMES = {
-    color:        { sun: '#E8A33D', base: '#0E5A5C', word: '#0E5A5C' },
-    dark:         { sun: '#E8A33D', base: '#FBF8F3', word: '#FBF8F3' },
+    color:        { sun: '#FFA500', base: '#1F6FB2', word: '#1F6FB2' },
+    dark:         { sun: '#FFFFFF', base: '#FFFFFF', word: '#FFFFFF' },
     mono:         { sun: '#1F2A2B', base: '#1F2A2B', word: '#1F2A2B' },
     'mono-white': { sun: '#FFFFFF', base: '#FFFFFF', word: '#FFFFFF' },
+    awal:         { sun: '#E8A33D', base: '#0E5A5C', word: '#0E5A5C' }, // warna eksplorasi awal
   };
 
   // Simbol tiap konsep: transform penempatan di lockup, viewBox simbol saja, dan bentuknya.
+  const K = 50 / 51;
   const MARKS = {
-    A: { place: 'translate(-6 -12.5)', box: '4 12 56 51', width: 217.5,
+    // Konsep A final (revisi): matahari r25, garis atas x-6..70, garis bawah x14..50.
+    A: { place: `translate(${6 * K} ${-10 * K}) scale(${K})`, box: '-8 8 80 55', width: 238,
+         draw: (c) => `<path d="M7 35A25 25 0 0 1 57 35Z" fill="${c.sun}"/><rect x="-6" y="42" width="76" height="8" rx="4" fill="${c.base}"/><rect x="14" y="54" width="36" height="7" rx="3.5" fill="${c.base}"/>`,
+         wordAt: 76 * K + 16 },
+    A0: { place: 'translate(-6 -12.5)', box: '4 12 56 51', width: 217.5,
          draw: (c) => `<path d="M10 36A22 22 0 0 1 54 36Z" fill="${c.sun}"/><rect x="6" y="42" width="52" height="8" rx="4" fill="${c.base}"/><rect x="16" y="54" width="32" height="7" rx="3.5" fill="${c.base}"/>`,
          wordAt: 70 },
     B: { place: 'translate(-4.55 -5.45) scale(0.9091)', box: '4 5 56 57', width: 214.5,
@@ -332,9 +338,9 @@
     el.insertAdjacentHTML('afterbegin', symbol(el.dataset.mark, el.dataset.scheme)));
 
   document.getElementById('appicon').insertAdjacentHTML('afterbegin',
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="App icon RISE"><rect width="512" height="512" fill="#0E5A5C"/><g transform="translate(96 68.5) scale(5)">${MARKS.A.draw(SCHEMES.dark)}</g></svg>`);
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="App icon RISE"><rect width="512" height="512" fill="#1F6FB2"/><g transform="translate(112 96.25) scale(4.5)">${MARKS.A.draw(SCHEMES.dark)}</g></svg>`);
 
-  const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#0E5A5C"/><path d="M7 19A9 9 0 0 1 25 19Z" fill="#E8A33D"/><rect x="6" y="22" width="20" height="4" rx="2" fill="#FBF8F3"/></svg>`;
+  const FAVICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#1F6FB2"/><path d="M6 18.5A10 10 0 0 1 26 18.5Z" fill="#FFFFFF"/><rect x="3" y="21.5" width="26" height="3.5" rx="1.75" fill="#FFFFFF"/><rect x="10" y="26.5" width="12" height="2.5" rx="1.25" fill="#FFFFFF"/></svg>`;
   document.getElementById('favs').innerHTML = [16, 32, 64].map((px) =>
     `<figure>${FAVICON.replace('<svg ', `<svg width="${px}" height="${px}" `)}<figcaption>${px} px</figcaption></figure>`).join('');
 </script>

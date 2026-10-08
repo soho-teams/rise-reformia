@@ -2,13 +2,13 @@
 
 Tiket: SOH-140 (induk SOH-139). Dikerjakan oleh `brand-designer`.
 
-**Status: Konsep A (Fajar) dipilih pada 8 Oktober 2026.** Aset di `logo/` dan nilai di `tokens.*` adalah versi resmi. Sebelum dipakai di materi cetak, bentuk huruf wordmark masih perlu dirapikan (lihat bagian 7).
+**Status: Konsep A (Fajar) dipilih pada 8 Oktober 2026, lalu direvisi di hari yang sama** (lihat bagian 2a). Aset di `logo/` dan nilai di `tokens.*` adalah versi resmi. Sebelum dipakai di materi cetak, bentuk huruf wordmark masih perlu dirapikan (lihat bagian 7).
 
 Cakupan: identitas minimal untuk dasar desain website. Brand guideline lengkap di luar scope.
 
 ## 1. Karakter: modern-hangat
 
-Profesional untuk audiens B2B (HR, direksi, owner bisnis), tetapi humanis. Itu sebabnya bukan navy-abu kaku ala Big 4 dan bukan warna neon ala startup. Dasarnya teal tua yang tenang dan tepercaya, dihangatkan oleh amber (cahaya fajar) dan latar krem, bukan putih dingin. Huruf wordmark berujung bulat agar terasa ramah.
+Profesional untuk audiens B2B (HR, direksi, owner bisnis), tetapi humanis. Itu sebabnya bukan navy-abu kaku ala Big 4 dan bukan warna neon ala startup. Dasarnya biru laut yang tenang dan tepercaya, dihangatkan oleh amber (matahari terbit) dan latar krem, bukan putih dingin. Huruf wordmark berujung bulat agar terasa ramah.
 
 ## 2. Tiga konsep logo
 
@@ -23,7 +23,16 @@ Pratinjau ada di `concepts/`. Ketiganya memakai wordmark RISE yang sama (huruf g
 **Alasan memilih A:**
 1. Menceritakan nama merek tanpa klise (bukan globe, swoosh, atau panah naik).
 2. Tetap terbaca di 16 px dan dalam satu warna, karena hanya terdiri dari tiga bentuk solid.
-3. Amber dan teal langsung menjadi sistem warna situs, jadi logo dan UI terasa satu keluarga.
+3. Amber dan biru laut langsung menjadi sistem warna situs, jadi logo dan UI terasa satu keluarga.
+
+### 2a. Revisi konsep A (8 Oktober 2026)
+
+Atas masukan RISE, konsep A diubah. File di `concepts/` tetap versi awal sebagai arsip eksplorasi.
+
+- Garis cakrawala dan tulisan RISE berwarna **biru laut #1F6FB2** (sebelumnya teal #0E5A5C), supaya terasa seperti matahari terbit di atas laut.
+- Matahari **amber #FFA500** (sebelumnya #E8A33D), diperbesar sekitar 13% (jari-jari 22 menjadi 25) dan sedikit terangkat dari garis cakrawala.
+- Garis atas lebih panjang dan melebar melewati kedua sisi matahari. Garis bawah lebih pendek, kurang dari separuh garis atas.
+- Di atas latar biru atau gelap, logo **putih seluruhnya**, termasuk matahari.
 
 ## 3. Aset logo (konsep A)
 
@@ -32,18 +41,19 @@ Semua di `logo/`. Wordmark digambar sebagai path, jadi tidak bergantung pada fon
 | Kebutuhan | File |
 |---|---|
 | Horizontal, warna penuh (latar terang) | `rise-logo-horizontal.svg` |
-| Latar gelap (pakai di atas `--color-dark-bg` #0A4547) | `rise-logo-horizontal-dark.svg` |
+| Latar biru atau gelap: putih seluruhnya (mis. di atas `--color-primary` atau `--color-dark-bg` #123A66) | `rise-logo-horizontal-dark.svg` |
 | Monokrom tinta #1F2A2B | `rise-logo-mono.svg` |
 | Monokrom putih (di atas foto atau warna gelap) | `rise-logo-mono-white.svg` |
 | Ikon/simbol saja (penuh, mono, gelap) | `rise-symbol.svg`, `rise-symbol-mono.svg`, `rise-symbol-dark.svg` |
-| Favicon | `favicon.svg` (kotak teal bergaya sederhana agar terbaca di 16 px) |
-| App icon | `app-icon.svg` (512, tanpa sudut membulat; biarkan OS yang memotong) |
+| Favicon | `favicon.svg` (kotak biru laut, simbol putih, disederhanakan agar terbaca di 16 px) |
+| App icon | `app-icon.svg` (512, latar biru laut, simbol putih; tanpa sudut membulat, biarkan OS yang memotong) |
 | PNG | `png/`: favicon 16/32/48/64, app icon 192/512, apple-touch-icon 180, logo horizontal 1200 px, simbol 512 px |
 
 Catatan pakai:
 - Ruang bebas minimum di sekeliling logo: setinggi huruf "I" pada wordmark.
 - Ukuran minimum: logo horizontal 96 px lebar, simbol 16 px.
 - Jangan ubah proporsi, urutan warna, atau tambahkan efek bayangan.
+- Di latar biru (primer maupun gelap) logo selalu putih seluruhnya; versi warna penuh hanya untuk latar terang.
 - Warna amber tidak dipakai sebagai warna teks di latar terang (lihat kontras).
 - Favicon di Next.js: letakkan `favicon.svg` sebagai `app/icon.svg` dan `apple-touch-icon-180.png` sebagai `app/apple-icon.png`. Tambahkan `favicon.ico` bila dibutuhkan peramban lama (belum dibuat; konversi dari `favicon-32.png`).
 
@@ -51,24 +61,27 @@ Catatan pakai:
 
 Rasio dihitung dengan rumus luminans relatif WCAG 2.x. Target AA: 4,5:1 untuk teks biasa, 3:1 untuk teks besar (18,66 px tebal atau 24 px) dan komponen UI.
 
-**Primer: teal**
+**Primer: biru laut**
 
 | Token | Hex | Pasangan | Rasio |
 |---|---|---|---|
-| `--color-primary` | #0E5A5C | teks putih di atasnya (tombol) | 7,97 |
-| | | sebagai teks/tautan di `--color-bg` #FBF8F3 | 7,52 |
-| | | sebagai teks di `--color-primary-soft` #E3F0EF | 6,82 |
-| `--color-primary-hover` | #0A4547 | teks putih | 10,74 |
-| `--color-dark-bg` | #0A4547 | teks `--color-text-inverse` #FBF8F3 | 10,14 |
+| `--color-primary` | #1F6FB2 | teks putih di atasnya (tombol) | 5,28 |
+| | | sebagai teks/tautan di `--color-bg` #FBF8F3 | 4,99 |
+| | | sebagai teks di putih | 5,28 |
+| | | sebagai teks di `--color-primary-soft` #E7F0F8 | 4,58 |
+| `--color-primary-hover` | #185A91 | teks putih | 7,22 |
+| `--color-dark-bg` | #123A66 (navy) | teks `--color-text-inverse` #FBF8F3 | 10,88 |
+| | | teks putih | 11,52 |
 
-**Sekunder: amber** (cahaya fajar; aksen, bukan teks di latar terang)
+**Sekunder: amber** (matahari terbit; aksen, bukan teks di latar terang)
 
 | Token | Hex | Pasangan | Rasio | Catatan |
 |---|---|---|---|---|
-| `--color-secondary` | #E8A33D | teks `--color-on-secondary` #1F2A2B di atasnya | 6,84 | tombol sekunder: lolos AA |
-| | | di atas putih | 2,16 | **gagal**, jangan dipakai sebagai teks atau ikon penting di latar terang |
-| | | di atas `--color-dark-bg` | 4,98 | lolos AA, aman untuk teks/ikon di latar gelap |
-| | | di atas `--color-primary` | 3,69 | hanya untuk grafis dan teks besar |
+| `--color-secondary` | #FFA500 | teks `--color-on-secondary` #1F2A2B di atasnya | 7,47 | tombol sekunder: lolos AA |
+| | | di atas putih | 1,97 | **gagal**, jangan dipakai sebagai teks atau ikon penting di latar terang |
+| | | di atas `--color-bg` | 1,86 | **gagal**, sama seperti di atas |
+| | | di atas `--color-dark-bg` | 5,83 | lolos AA, aman untuk teks/ikon di latar gelap |
+| | | di atas `--color-primary` | 2,68 | **gagal**, hanya untuk elemen dekoratif |
 
 `--color-accent` terakota #B4531F: teks di putih 5,00 dan di `--color-bg` 4,72 (lolos). Di `--color-surface-alt` hanya 4,22, jadi **jangan dipakai sebagai teks di sana**. Pakai hemat (sorotan, angka statistik).
 
@@ -95,7 +108,7 @@ Tokens lain: `--color-bg` #FBF8F3 (latar halaman), `--color-surface` #FFFFFF (ka
 | Galat | #B3261E | #FDECEA | 5,72 | 6,54 |
 | Info | #1F5F9E | #E8F1FA | 5,77 | 6,59 |
 
-Semua pasangan yang dipakai sebagai teks di atas lolos AA, kecuali yang ditandai gagal (amber di latar terang), yang memang tidak diperuntukkan sebagai teks. Fokus keyboard: cincin 2 px `--color-focus-ring` (teal) dengan offset 2 px; di latar gelap pakai `--color-focus-ring-on-dark` (amber).
+Semua pasangan yang dipakai sebagai teks di atas lolos AA, kecuali yang ditandai gagal (amber di latar terang), yang memang tidak diperuntukkan sebagai teks. Fokus keyboard: cincin 2 px `--color-focus-ring` (biru laut) dengan offset 2 px; di latar gelap pakai `--color-focus-ring-on-dark` (amber).
 
 ## 5. Tipografi
 
@@ -137,7 +150,7 @@ Konvensi nama: `--color-<peran>`, `--font-*`, `--text-<ukuran>`, `--radius-<ukur
 
 ## 7. Yang belum / catatan
 
-- Konsep A dipilih pada 8 Oktober 2026.
+- Konsep A dipilih pada 8 Oktober 2026, lalu direvisi ke biru laut (bagian 2a).
 - Bentuk dan kerning wordmark, terutama huruf "S", dirapikan oleh desainer sebelum dipakai di materi cetak.
 - Versi vertikal (simbol di atas tulisan) dan `favicon.ico` belum dibuat.
 - Wordmark digambar tangan sebagai path. Kerning dan bentuk "S" sebaiknya ditinjau mata desainer saat finalisasi.

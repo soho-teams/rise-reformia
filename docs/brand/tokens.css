@@ -1,12 +1,12 @@
-/* Design token RISE (SOH-140). Konsep A (Fajar), dipilih 8 Oktober 2026. Sumber: tokens.json */
+/* Design token RISE (SOH-140). Konsep A (Fajar), revisi biru laut 8 Oktober 2026. Sumber: tokens.json */
 :root {
   /* Warna */
-  --color-primary: #0E5A5C;
-  --color-primary-hover: #0A4547;
-  --color-primary-soft: #E3F0EF;
+  --color-primary: #1F6FB2;
+  --color-primary-hover: #185A91;
+  --color-primary-soft: #E7F0F8;
   --color-on-primary: #FFFFFF;
-  --color-secondary: #E8A33D;
-  --color-secondary-soft: #FDF1DA;
+  --color-secondary: #FFA500;
+  --color-secondary-soft: #FFF2DB;
   --color-on-secondary: #1F2A2B;
   --color-accent: #B4531F;
   --color-bg: #FBF8F3;
@@ -17,7 +17,7 @@
   --color-text: #1F2A2B;
   --color-text-muted: #5B6665;
   --color-text-inverse: #FBF8F3;
-  --color-dark-bg: #0A4547;
+  --color-dark-bg: #123A66;
   --color-success: #27704A;
   --color-success-bg: #EAF4EE;
   --color-warning: #8A5A00;
@@ -26,8 +26,8 @@
   --color-error-bg: #FDECEA;
   --color-info: #1F5F9E;
   --color-info-bg: #E8F1FA;
-  --color-focus-ring: #0E5A5C;
-  --color-focus-ring-on-dark: #E8A33D;
+  --color-focus-ring: #1F6FB2;
+  --color-focus-ring-on-dark: #FFA500;
 
   /* Tipografi */
   --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
