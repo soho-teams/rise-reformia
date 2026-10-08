@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 211 50" role="img" aria-label="RISE - Reformia Inspirasi Semesta">
+  <title>RISE</title><desc>Logo horizontal RISE untuk latar gelap (teal gelap #0A4547)</desc>
+  <g transform="translate(-6.00 -12.50) scale(1.0000)"><path d="M10 36A22 22 0 0 1 54 36Z" fill="#E8A33D"/><rect x="6" y="42" width="52" height="8" rx="4" fill="#FBF8F3"/><rect x="16" y="54" width="32" height="7" rx="3.5" fill="#FBF8F3"/></g>
+  <g transform="translate(70.00 0)"><g fill="none" stroke="#FBF8F3" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.5 45.5V4.5H22A11.5 11.5 0 0 1 22 27.5H4.5M20 27.5L33 45.5"/>
+    <path transform="translate(46 0)" d="M4.5 45.5V4.5"/>
+    <path transform="translate(64 0)" d="M31 12C28 7 22 4.5 17 4.5C9 4.5 5 9 5 14C5 20 10 22.5 18 24.5C26 26.5 31 29 31 35.5C31 41.5 26 45.5 18 45.5C12 45.5 7.5 43 4.5 38"/>
+    <path transform="translate(108 0)" d="M31 4.5H4.5V45.5H31M4.5 25H27"/>
+  </g></g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198 50" role="img" aria-label="RISE - Reformia Inspirasi Semesta">
+  <title>RISE</title><desc>Konsep C Monogram R: huruf R dari bentuk geometris bulat</desc>
+  <g transform="translate(-10.71 -3.57) scale(0.8929)"><path d="M24 10H36A13 13 0 0 1 36 36H24Z" fill="#E8A33D"/><rect x="12" y="10" width="12" height="44" rx="6" fill="#0E5A5C"/><path d="M33 38L50 54" stroke="#0E5A5C" stroke-width="12" stroke-linecap="round" fill="none"/></g>
+  <g transform="translate(57.29 0)"><g fill="none" stroke="#0E5A5C" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4.5 45.5V4.5H22A11.5 11.5 0 0 1 22 27.5H4.5M20 27.5L33 45.5"/>
+    <path transform="translate(46 0)" d="M4.5 45.5V4.5"/>
+    <path transform="translate(64 0)" d="M31 12C28 7 22 4.5 17 4.5C9 4.5 5 9 5 14C5 20 10 22.5 18 24.5C26 26.5 31 29 31 35.5C31 41.5 26 45.5 18 45.5C12 45.5 7.5 43 4.5 38"/>
+    <path transform="translate(108 0)" d="M31 4.5H4.5V45.5H31M4.5 25H27"/>
+  </g></g>
+</svg>
