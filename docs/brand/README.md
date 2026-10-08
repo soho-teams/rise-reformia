@@ -2,7 +2,7 @@
 
 Tiket: SOH-140 (induk SOH-139). Dikerjakan oleh `brand-designer`.
 
-**Status: menunggu persetujuan RISE.** Konsep A direkomendasikan, tetapi belum final sampai RISE menyetujuinya. Jika RISE memilih konsep lain atau meminta revisi, aset di `logo/` dan nilai di `tokens.*` perlu diperbarui. Nama token tidak berubah.
+**Status: Konsep A (Fajar) dipilih pada 8 Oktober 2026.** Aset di `logo/` dan nilai di `tokens.*` adalah versi resmi. Sebelum dipakai di materi cetak, bentuk huruf wordmark masih perlu dirapikan (lihat bagian 7).
 
 Cakupan: identitas minimal untuk dasar desain website. Brand guideline lengkap di luar scope.
 
@@ -16,7 +16,7 @@ Pratinjau ada di `concepts/`. Ketiganya memakai wordmark RISE yang sama (huruf g
 
 | Konsep | File | Rasional |
 |---|---|---|
-| **A. Fajar (rekomendasi)** | `concepts/konsep-a-fajar.svg` | Matahari separuh terbit di atas dua garis cakrawala. Langsung menerjemahkan nama "RISE" dan "Inspirasi". Garis bertumpuk juga bisa dibaca sebagai lapisan, yaitu beberapa Layanan yang saling menopang. Bentuk datar dan sederhana. |
+| **A. Fajar (dipilih)** | `concepts/konsep-a-fajar.svg` | Matahari separuh terbit di atas dua garis cakrawala. Langsung menerjemahkan nama "RISE" dan "Inspirasi". Garis bertumpuk juga bisa dibaca sebagai lapisan, yaitu beberapa Layanan yang saling menopang. Bentuk datar dan sederhana. |
 | B. Tunas Insan | `concepts/konsep-b-tunas-insan.svg` | Sosok manusia dengan lengan terangkat (titik amber di atas sudut teal). Menonjolkan sisi humanis dan Psikologi Industri & Organisasi. Risiko: bisa terbaca sebagai ikon panah atau "orang" generik, dan kurang membawa makna "terbit". |
 | C. Monogram R | `concepts/konsep-c-monogram-r.svg` | Huruf R dari batang dan setengah lingkaran amber. Tegas dan mudah diingat, tetapi lebih korporat-generik dan berdekatan dengan banyak monogram huruf. |
 
@@ -137,7 +137,9 @@ Konvensi nama: `--color-<peran>`, `--font-*`, `--text-<ukuran>`, `--radius-<ukur
 
 ## 7. Yang belum / catatan
 
-- Persetujuan konsep final dari RISE: **menunggu persetujuan RISE** (di luar sesi ini).
+- Konsep A dipilih pada 8 Oktober 2026.
+- Bentuk dan kerning wordmark, terutama huruf "S", dirapikan oleh desainer sebelum dipakai di materi cetak.
+- Versi vertikal (simbol di atas tulisan) dan `favicon.ico` belum dibuat.
 - Wordmark digambar tangan sebagai path. Kerning dan bentuk "S" sebaiknya ditinjau mata desainer saat finalisasi.
 - `favicon.ico` dan versi vertikal/stacked belum dibuat (di luar kebutuhan tiket).
 - Kontras dihitung dengan skrip; pengecekan visual di peramban tetap disarankan saat implementasi.
