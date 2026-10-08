@@ -93,8 +93,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'pengaturan-situs': PengaturanSitus;
+  };
+  globalsSelect: {
+    'pengaturan-situs': PengaturanSitusSelect<false> | PengaturanSitusSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -534,6 +538,71 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pengaturan-situs".
+ */
+export interface PengaturanSitus {
+  id: number;
+  /**
+   * Contoh: 0812 3456 7890. Kosongkan untuk menyembunyikan tombol WhatsApp.
+   */
+  whatsapp?: string | null;
+  /**
+   * Teks yang sudah terisi saat pengunjung membuka chat.
+   */
+  pesanWhatsapp?: string | null;
+  emailNotifikasiLead?:
+    | {
+        email: string;
+        id?: string | null;
+      }[]
+    | null;
+  emailKontak: string;
+  telepon: string;
+  /**
+   * Opsional. Setiap baris tampil sebagai baris baru di footer.
+   */
+  alamat?: string | null;
+  jamLayanan?: string | null;
+  mediaSosial?:
+    | {
+        nama: 'LinkedIn' | 'Instagram' | 'Facebook' | 'YouTube' | 'TikTok' | 'X';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pengaturan-situs_select".
+ */
+export interface PengaturanSitusSelect<T extends boolean = true> {
+  whatsapp?: T;
+  pesanWhatsapp?: T;
+  emailNotifikasiLead?:
+    | T
+    | {
+        email?: T;
+        id?: T;
+      };
+  emailKontak?: T;
+  telepon?: T;
+  alamat?: T;
+  jamLayanan?: T;
+  mediaSosial?:
+    | T
+    | {
+        nama?: T;
+        url?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -25,6 +25,7 @@ export const id = {
     cta: 'Jadwalkan konsultasi',
     // Label CTA di header ponsel, tempat label lengkap tidak muat di samping logo dan tombol Menu.
     ctaPendek: 'Konsultasi',
+    tombolWhatsapp: 'Hubungi RISE lewat WhatsApp',
     kartu: { lihatLayanan: 'Lihat Layanan' },
     footer: {
       tagline: 'Menata organisasi dengan cara yang manusiawi.',
@@ -39,16 +40,6 @@ export const id = {
       kebijakanPrivasi: 'Kebijakan Privasi',
       hakCipta: (tahun: number) => `© ${tahun} Reformia Inspirasi Semesta. Hak cipta dilindungi.`,
     },
-  },
-  // Data kontak resmi RISE (8 Oktober 2026); pindah ke Pengaturan Situs di SOH-150.
-  kontakRise: {
-    alamat: [
-      'Ged. Bintaro Business Center',
-      'Jl. RC Veteran No. 1-i, RT 001/RW 003',
-      'Kel. Bintaro, Kec. Pesanggrahan',
-      'Jakarta Selatan 12330',
-    ],
-    jamLayanan: 'Senin–Jumat, 08.00–17.00 WIB',
   },
   // Copy dari docs/copy/global.md, bagian Halaman Insight (SOH-142).
   insight: {

@@ -4,6 +4,7 @@ import React from 'react'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { TombolWhatsapp } from '@/components/TombolWhatsapp'
 import { defaultLocale, getMessages } from '@/i18n'
 import './styles.css'
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <Footer />
+        <TombolWhatsapp />
       </body>
     </html>
   )

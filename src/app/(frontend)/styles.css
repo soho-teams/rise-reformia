@@ -732,7 +732,8 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: var(--space-7);
-  padding-block: var(--space-8) var(--space-6);
+  /* Ruang bawah ekstra agar tombol WhatsApp tidak menutupi baris legal. */
+  padding-block: var(--space-8) var(--space-9);
 }
 
 .footer__kolom-utama {
@@ -1003,6 +1004,34 @@ a:hover {
   font-weight: var(--weight-bold);
   font-size: var(--text-xl);
   line-height: var(--leading-snug);
+}
+
+/* ---------- Tombol WhatsApp mengambang ---------- */
+
+.tombol-whatsapp {
+  position: fixed;
+  right: max(var(--space-5), env(safe-area-inset-right, 0px));
+  bottom: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--color-on-primary);
+  border-radius: var(--radius-full);
+  background: var(--color-whatsapp);
+  color: var(--color-on-primary);
+  /* Melayang di atas konten, jadi butuh bayangan agar terbaca di latar terang maupun navy. */
+  box-shadow: var(--shadow-lg);
+}
+
+.tombol-whatsapp:hover {
+  color: var(--color-on-primary);
+  filter: brightness(0.92);
+}
+
+.tombol-whatsapp:focus-visible {
+  outline-offset: 3px;
 }
 
 /* ---------- Halaman 404 ---------- */

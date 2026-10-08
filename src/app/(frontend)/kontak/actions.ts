@@ -9,6 +9,7 @@ import { buatNotifierSmtp } from '@/lead/notifier'
 import { buatPembatasMemori } from '@/lead/pembatas'
 import type { ErrorLead } from '@/lead/periksa'
 import { submitLead } from '@/lead/submitLead'
+import { tujuanNotifikasiLead } from '@/situs/pengaturan'
 
 export type StateFormLead = {
   status: 'awal' | 'gagal' | 'sukses'
@@ -20,7 +21,7 @@ export type StateFormLead = {
 }
 
 const pembatas = buatPembatasMemori()
-const notifier = buatNotifierSmtp()
+const notifier = buatNotifierSmtp(async () => tujuanNotifikasiLead(await getPayload({ config })))
 
 export async function kirimLead(sebelumnya: StateFormLead, formData: FormData): Promise<StateFormLead> {
   const nilai: Record<string, string> = {}
