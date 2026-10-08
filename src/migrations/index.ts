@@ -3,6 +3,7 @@ import * as migration_20261008_154012_peran_pengguna from './20261008_154012_per
 import * as migration_20261008_161515_lead from './20261008_161515_lead';
 import * as migration_20261008_222034_insight_layanan from './20261008_222034_insight_layanan';
 import * as migration_20261008_230450_pengaturan_situs from './20261008_230450_pengaturan_situs';
+import * as migration_20261008_232502_status_tindak_lanjut_lead from './20261008_232502_status_tindak_lanjut_lead';
 
 export const migrations = [
   {
@@ -28,6 +29,11 @@ export const migrations = [
   {
     up: migration_20261008_230450_pengaturan_situs.up,
     down: migration_20261008_230450_pengaturan_situs.down,
-    name: '20261008_230450_pengaturan_situs'
+    name: '20261008_230450_pengaturan_situs',
+  },
+  {
+    up: migration_20261008_232502_status_tindak_lanjut_lead.up,
+    down: migration_20261008_232502_status_tindak_lanjut_lead.down,
+    name: '20261008_232502_status_tindak_lanjut_lead'
   },
 ];

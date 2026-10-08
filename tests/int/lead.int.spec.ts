@@ -202,7 +202,7 @@ describe('Akses data Lead', () => {
     await expect(
       payload.create({
         collection: 'leads',
-        data: { nama: 'X', perusahaan: 'X', jabatan: 'X', email: 'x@x.id', layanan: 'konsultasi-bisnis', pesan: 'Pesan yang cukup panjang.', persetujuanPdp: true, waktuPersetujuan: new Date().toISOString(), statusNotifikasi: 'gagal' },
+        data: { nama: 'X', perusahaan: 'X', jabatan: 'X', email: 'x@x.id', layanan: 'konsultasi-bisnis', pesan: 'Pesan yang cukup panjang.', persetujuanPdp: true, waktuPersetujuan: new Date().toISOString(), statusNotifikasi: 'gagal', statusTindakLanjut: 'baru' },
         overrideAccess: false,
       }),
     ).rejects.toThrow()

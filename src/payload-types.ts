@@ -280,6 +280,7 @@ export interface Lead {
   pesan: string;
   persetujuanPdp: boolean;
   waktuPersetujuan: string;
+  statusTindakLanjut: 'baru' | 'dihubungi' | 'selesai';
   statusNotifikasi: 'terkirim' | 'gagal';
   updatedAt: string;
   createdAt: string;
@@ -495,6 +496,7 @@ export interface LeadsSelect<T extends boolean = true> {
   pesan?: T;
   persetujuanPdp?: T;
   waktuPersetujuan?: T;
+  statusTindakLanjut?: T;
   statusNotifikasi?: T;
   updatedAt?: T;
   createdAt?: T;
