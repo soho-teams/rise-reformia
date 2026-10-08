@@ -10,7 +10,7 @@ meta_description: "Pendampingan menyusun strategi, merapikan struktur organisasi
 
 ## Hero
 
-**Headline:** Organisasi yang bergerak searah, bukan sekadar sibuk.
+**Headline:** Organisasi yang bergerak ke arah yang sama.
 **Subheadline:** Konsultasi Manajemen RISE membantu direksi dan HR menyusun strategi, merapikan struktur organisasi, dan menyederhanakan proses bisnis.
 **CTA utama:** Jadwalkan konsultasi
 **CTA sekunder:** Chat via WhatsApp
@@ -19,7 +19,7 @@ meta_description: "Pendampingan menyusun strategi, merapikan struktur organisasi
 - B. Dari strategi di atas kertas ke kerja yang terasa sehari-hari.
 - C. Struktur yang jelas, proses yang ringkas, arah yang disepakati.
 
-*Rekomendasi: A. Gambaran "searah, bukan sekadar sibuk" dikenali langsung oleh direksi yang merasa timnya sibuk tanpa hasil.*
+*Rekomendasi: A. Kalimat pendek yang langsung menggambarkan hasil yang dicari direksi. (Direvisi 8 Oktober 2026 dari "searah, bukan sekadar sibuk" untuk menghindari pola "X, bukan Y".)*
 
 ## Masalah yang kami bantu selesaikan
 
@@ -28,13 +28,13 @@ meta_description: "Pendampingan menyusun strategi, merapikan struktur organisasi
 - Pembagian peran dan tanggung jawab tumpang tindih atau tidak jelas.
 - Keputusan sederhana harus melewati terlalu banyak tahap.
 - Pertumbuhan perusahaan membuat struktur lama tidak lagi cocok.
-- Proses kerja bergantung pada orang tertentu, bukan pada sistem.
+- Proses kerja bergantung pada orang tertentu, belum pada sistem.
 
 ## Pendekatan kami
 
 **Judul section:** Bagaimana RISE bekerja
 1. **Memahami.** Kami mempelajari tujuan, kondisi, dan hambatan organisasi lewat diskusi dan telaah dokumen.
-2. **Mendiagnosis.** Kami memetakan penyebab persoalan, bukan hanya gejalanya.
+2. **Mendiagnosis.** Kami memetakan penyebab di balik gejala yang terlihat.
 3. **Merancang.** Kami menyusun rekomendasi bersama tim Anda, sehingga hasilnya realistis dan dimiliki bersama.
 4. **Mendampingi.** Kami membantu tim menerapkan rancangan dan menyesuaikannya bila diperlukan.
 
@@ -64,7 +64,7 @@ meta_description: "Pendampingan menyusun strategi, merapikan struktur organisasi
 ## Pertanyaan umum
 
 **Apakah Layanan ini hanya untuk perusahaan besar?**
-Tidak. Yang menentukan adalah kebutuhannya, bukan ukurannya. Diskusi awal akan membantu menilai apakah Layanan ini yang Anda perlukan.
+Tidak. Layanan ini cocok untuk organisasi yang membutuhkannya, berapa pun ukurannya. Diskusi awal akan membantu menilai apakah Layanan ini yang Anda perlukan.
 
 **Berapa lama pendampingannya?**
 Tergantung ruang lingkup dan kompleksitas persoalan. Kami akan menyampaikan perkiraan setelah diskusi awal.

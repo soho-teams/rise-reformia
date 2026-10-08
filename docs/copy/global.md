@@ -42,9 +42,10 @@ Pola: `{Judul halaman} | RISE`, maksimal 60 karakter. Insight: `{Judul Insight} 
 **Kolom Perusahaan:** Tentang Kami, Insight, Kontak
 **Kolom Hubungi Kami:**
 - WhatsApp: `[PERLU DATA RISE: nomor WhatsApp]`
-- Email: `[PERLU DATA RISE: email]`
-- Alamat: `[PERLU DATA RISE: alamat kantor]`
-- Jam layanan: `[PERLU DATA RISE: jam kerja]`
+- Email: business@rise-reformia.id
+- Telepon: 021 7362 639
+- Alamat: Ged. Bintaro Business Center, Jl. RC Veteran No. 1-i, RT 001/RW 003, Kel. Bintaro, Kec. Pesanggrahan, Jakarta Selatan 12330
+- Jam layanan: Senin–Jumat, 08.00–17.00 WIB
 **Media sosial:** `[PERLU DATA RISE: akun media sosial resmi, misalnya LinkedIn dan Instagram]`
 
 **Baris legal:**

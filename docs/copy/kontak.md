@@ -99,10 +99,10 @@ Tim RISE
 
 **Judul section:** Atau hubungi kami langsung
 - WhatsApp: `[PERLU DATA RISE: nomor WhatsApp bisnis]`
-- Email: `[PERLU DATA RISE: alamat email resmi]`
-- Telepon: `[PERLU DATA RISE: nomor telepon kantor, jika ada]`
-- Alamat: `[PERLU DATA RISE: alamat kantor, jika menerima kunjungan]`
-- Jam layanan: `[PERLU DATA RISE: hari dan jam kerja, termasuk zona waktu]`
+- Email: business@rise-reformia.id
+- Telepon: 021 7362 639
+- Alamat: Ged. Bintaro Business Center, Jl. RC Veteran No. 1-i, RT 001/RW 003, Kel. Bintaro, Kec. Pesanggrahan, Jakarta Selatan 12330
+- Jam layanan: Senin–Jumat, 08.00–17.00 WIB
 
 ## Tombol WhatsApp
 

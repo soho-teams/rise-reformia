@@ -15,7 +15,7 @@ meta_description: "Kenali RISE (Reformia Inspirasi Semesta): firma konsultan yan
 
 ## Cerita RISE
 
-Banyak organisasi tahu apa yang ingin dicapai, tetapi tidak selalu tahu dari mana memulainya. Strategi sudah ada, tetapi belum diterjemahkan ke pekerjaan sehari-hari. Orang-orang berbakat sudah bergabung, tetapi belum ditempatkan atau dikembangkan dengan tepat. Usaha berjalan, tetapi belum punya fondasi untuk berlipat ganda.
+Banyak organisasi tahu apa yang ingin dicapai, tetapi tidak selalu tahu dari mana memulainya. Strategi sudah dirumuskan namun belum terasa dalam pekerjaan sehari-hari. Ada orang-orang berbakat yang belum ditempatkan atau dikembangkan dengan tepat, dan ada usaha yang berjalan tanpa fondasi untuk tumbuh lebih besar.
 
 Di titik itulah RISE hadir. Kami memadukan konsultasi manajemen, psikologi industri dan organisasi, konsultasi bisnis, serta pelatihan, karena persoalan organisasi jarang bisa diselesaikan dari satu sisi saja.
 
@@ -41,7 +41,7 @@ Menjadi mitra tepercaya bagi organisasi dan pemilik usaha di Indonesia dalam mem
 ## Misi
 
 *Usulan draf, perlu disetujui RISE:*
-1. Memberikan pendampingan yang berpijak pada kondisi nyata Klien, bukan templat generik.
+1. Memberikan pendampingan yang berpijak pada kondisi nyata Klien dan disusun khusus untuk setiap organisasi.
 2. Memadukan keahlian manajemen, psikologi, dan bisnis dalam satu pendekatan yang utuh.
 3. Menumbuhkan kemampuan orang di dalam organisasi Klien, agar perubahan dapat berlanjut setelah pendampingan selesai.
 4. Menjaga integritas dan kerahasiaan dalam setiap kerja sama.
@@ -57,7 +57,7 @@ Kami jujur tentang apa yang bisa dan tidak bisa kami bantu, dan menjaga kerahasi
 Kami mendengarkan sebelum menyarankan. Setiap organisasi punya cerita dan batasannya sendiri.
 
 ### Kolaborasi
-Kami bekerja bersama tim Klien, bukan di atas mereka.
+Kami bekerja berdampingan dengan tim Klien dan melibatkan mereka sejak awal.
 
 ### Relevansi
 Rekomendasi kami harus bisa dijalankan dalam konteks nyata organisasi Anda.
