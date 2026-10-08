@@ -20,7 +20,15 @@ pnpm install
 pnpm dev
 ```
 
-Buka http://localhost:3000 untuk website dan http://localhost:3000/admin untuk panel admin. Pada database kosong, panel admin meminta pembuatan pengguna pertama.
+Buka http://localhost:3000 untuk website dan http://localhost:3000/admin untuk panel admin. Pada database kosong, panel admin meminta pembuatan pengguna pertama, yang otomatis menjadi Admin.
+
+Untuk akun contoh setiap peran, jalankan `pnpm seed`. Skrip ini membuat `admin@rise.local`, `editor@rise.local`, dan `penulis@rise.local` dengan kata sandi `rahasia-dev-123` (ubah lewat `SEED_PASSWORD`). Skrip menolak berjalan di produksi dan melewati akun yang sudah ada.
+
+## Peran pengguna CMS
+
+Peran bertingkat: Admin ⊃ Editor ⊃ Penulis. Gunakan helper di `src/access/peran.ts` (`minimal('editor')`, `fieldMinimal('admin')`, `punyaPeran(user, 'admin')`) untuk aturan akses koleksi dan global baru, jangan menulis ulang pengecekan peran.
+
+Pengaman di koleksi Pengguna: pengguna pertama otomatis Admin, Admin terakhir tidak bisa diturunkan atau dihapus, dan Admin tidak bisa menghapus akunnya sendiri. Tes yang perlu mengosongkan koleksi memakai `kosongkanPengguna()` di `tests/helpers/payload.ts`.
 
 ## Tes
 
