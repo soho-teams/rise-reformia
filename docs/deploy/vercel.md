@@ -28,8 +28,10 @@ dan `output: 'standalone'` yang dimatikan otomatis di Vercel.
 
 5. **Deploy.** Build menjalankan `payload migrate` ke database Neon, lalu `next build`.
 6. Buka `/admin` di URL demo dan buat Admin pertama. Empat Layanan dan Pengaturan Situs terisi otomatis.
-7. Opsional: isi nomor WhatsApp di **Pengaturan Situs**, tulis satu atau dua Insight contoh agar
-   bagian Insight di Beranda dan halaman Layanan terisi.
+7. Opsional: isi nomor WhatsApp di **Pengaturan Situs**.
+8. Isi tujuh Insight contoh dari mockup (judul, isi, sampul) dengan akun Editor atau Admin:
+   `SITUS=https://rise-reformia.vercel.app EMAIL=... SANDI=... pnpm tsx scripts/isi-insight-demo.ts`
+   Insight yang judulnya sudah ada dilewati, jadi aman dijalankan ulang.
 
 ## Catatan
 
