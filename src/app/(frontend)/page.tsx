@@ -25,7 +25,7 @@ export const metadata = metadataHalaman({ ...t.meta, path: RUTE.beranda })
 export default async function Beranda() {
   const [kontak, insight, { klien, testimoni }] = await Promise.all([
     pengaturanSitusHalaman(),
-    insightTerbaru(3),
+    insightTerbaru(2),
     bagianOpsionalHalaman(),
   ])
 
