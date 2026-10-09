@@ -19,7 +19,7 @@ export async function Footer() {
       <div className="wadah footer__isi">
         <div className="footer__kolom-utama">
           <div className="footer__identitas">
-            <Image src={logoPutih} alt={t.site.name} height={32} />
+            <Image src={logoPutih} alt={t.site.name} height={25} />
             <p className="footer__tagline">{f.tagline}</p>
             <p className="footer__deskripsi">{f.deskripsi}</p>
           </div>
