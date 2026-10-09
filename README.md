@@ -72,6 +72,10 @@ Tombol Pratinjau di admin membuka `/next/pratinjau?slug=...`. Rute ini hanya men
 - Produksi: migrasi di `src/migrations/` dijalankan otomatis saat Payload pertama diinisialisasi (request pertama setelah start).
 - Setiap mengubah koleksi atau global, buat migrasi baru dengan `pnpm migrate:create <nama>` dan commit bersama perubahannya.
 
+## Demo di Vercel
+
+Lihat `docs/deploy/vercel.md`. Adapter Vercel Blob untuk Media hanya aktif bila `BLOB_READ_WRITE_TOKEN` diisi.
+
 ## Produksi
 
 `Dockerfile` membangun image Next.js standalone (`node server.js`). Variabel wajib: `DATABASE_URL` dan `PAYLOAD_SECRET`. Folder `media/` berisi unggahan dan perlu dipasang sebagai volume.
