@@ -51,6 +51,9 @@ export default buildConfig({
     // File tetap disajikan lewat /api/media/file/..., jadi bucket boleh private.
     s3Storage({
       enabled: Boolean(process.env.S3_BUCKET),
+      // Field tambahan adapter (mis. _objectKey) selalu ada di schema, aktif atau tidak, supaya
+      // migrasi sama untuk Vercel (S3 aktif) dan VPS atau tes (S3 nonaktif).
+      alwaysInsertFields: true,
       collections: { media: true },
       bucket: process.env.S3_BUCKET ?? '',
       config: {

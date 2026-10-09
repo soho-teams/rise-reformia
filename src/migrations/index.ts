@@ -6,6 +6,7 @@ import * as migration_20261008_230450_pengaturan_situs from './20261008_230450_p
 import * as migration_20261008_232502_status_tindak_lanjut_lead from './20261008_232502_status_tindak_lanjut_lead';
 import * as migration_20261009_003603_profil_bagian_opsional from './20261009_003603_profil_bagian_opsional';
 import * as migration_20261009_011841_default_pesan_whatsapp from './20261009_011841_default_pesan_whatsapp';
+import * as migration_20261009_032432_kolom_storage_media from './20261009_032432_kolom_storage_media';
 
 export const migrations = [
   {
@@ -46,6 +47,11 @@ export const migrations = [
   {
     up: migration_20261009_011841_default_pesan_whatsapp.up,
     down: migration_20261009_011841_default_pesan_whatsapp.down,
-    name: '20261009_011841_default_pesan_whatsapp'
+    name: '20261009_011841_default_pesan_whatsapp',
+  },
+  {
+    up: migration_20261009_032432_kolom_storage_media.up,
+    down: migration_20261009_032432_kolom_storage_media.down,
+    name: '20261009_032432_kolom_storage_media'
   },
 ];
