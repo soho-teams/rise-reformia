@@ -224,7 +224,21 @@ a:hover {
 
 .header__logo img {
   width: auto;
-  height: 30px;
+  height: 25px;
+  transition: height 200ms ease;
+}
+
+/* Setelah halaman digulir (PemantauGulir), header dan logo mengecil agar konten lebih lapang. */
+.header__isi {
+  transition: min-height 200ms ease;
+}
+
+.header[data-digulir='true'] .header__isi {
+  min-height: 56px;
+}
+
+.header[data-digulir='true'] .header__logo img {
+  height: 20px;
 }
 
 .nav-utama__toggle {
@@ -285,10 +299,6 @@ a:hover {
 @media (max-width: 959.98px) {
   .header__isi {
     gap: var(--space-2);
-  }
-
-  .header__logo img {
-    height: 26px;
   }
 
   .header__cta-panjang {
@@ -1416,13 +1426,13 @@ a:hover {
 .hero-beranda {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
+  align-items: center;
   gap: var(--space-7) var(--space-8);
   padding-block: clamp(56px, 8vw, 112px) var(--space-8);
 }
 
 .hero-beranda__teks {
-  flex: 1 1 560px;
+  flex: 1 1 520px;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -1431,9 +1441,9 @@ a:hover {
 
 .hero-beranda__foto {
   position: relative;
-  flex: 1 1 440px;
+  flex: 1 1 460px;
   min-width: 0;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius-lg);
   background: var(--color-surface-alt);
@@ -1441,6 +1451,12 @@ a:hover {
 
 .hero-beranda__foto img {
   object-fit: cover;
+}
+
+/* Judul hero Beranda lebih kecil dari judul-1 biasa agar seimbang dengan foto di sampingnya. */
+.hero-beranda .judul-1 {
+  font-size: clamp(2.25rem, 1.5rem + 2.2vw, 3.5rem);
+  line-height: 1.08;
 }
 
 .sorotan {
