@@ -5,12 +5,12 @@ import { useActionState, useState } from 'react'
 
 import { Centang, Isian } from '@/components/Isian'
 import { kelasTombol } from '@/components/Tombol'
-import { getMessages } from '@/i18n'
+import { getMessagesUmum } from '@/i18n/klien'
 import { RUTE } from '@/situs/rute'
 import { FIELD_HONEYPOT, LAYANAN_LEAD, type FieldLead, type LayananLead } from '@/lead/periksa'
 import { kirimLead, type StateFormLead } from './actions'
 
-const t = getMessages().lead
+const t = getMessagesUmum().lead
 const AWAL: StateFormLead = { status: 'awal', errors: {}, nilai: {}, percobaan: 0 }
 
 type PropsTeks = {

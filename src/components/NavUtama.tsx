@@ -4,11 +4,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
-import { getMessages } from '@/i18n'
+import { getMessagesUmum } from '@/i18n/klien'
 import { SLUG_LAYANAN } from '@/layanan'
 import { RUTE, ruteLayanan } from '@/situs/rute'
 
-const t = getMessages()
+const t = getMessagesUmum()
 const TAUTAN = [
   { href: RUTE.insight, label: t.layout.nav.insight },
   { href: RUTE.tentangKami, label: t.layout.nav.tentangKami },

@@ -1,7 +1,7 @@
-import { getMessages } from '@/i18n'
+import { getMessagesUmum } from '@/i18n/klien'
 import { SLUG_LAYANAN } from '@/layanan'
 
-const t = getMessages().lead
+const t = getMessagesUmum().lead
 
 export const LAYANAN_LEAD = [...SLUG_LAYANAN, 'belum-yakin'] as const
 export type LayananLead = (typeof LAYANAN_LEAD)[number]

@@ -41,4 +41,24 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+const konfigPayload = withPayload(nextConfig, { devBundleServerPackages: false })
+const headersPayload = konfigPayload.headers
+
+/**
+ * Payload memasang Accept-CH/Critical-CH (tema gelap admin) di semua rute. Critical-CH membuat
+ * browser mengulang permintaan halaman pertama, jadi halaman publik terasa seperti di-redirect.
+ * Header itu cukup berlaku di panel admin.
+ */
+const konfig: NextConfig = {
+  ...konfigPayload,
+  async headers() {
+    const daftar = (await headersPayload?.()) ?? []
+    return daftar.map((aturan) =>
+      aturan.source === '/:path*' && aturan.headers.some((h) => h.key === 'Critical-CH')
+        ? { ...aturan, source: '/admin/:path*' }
+        : aturan,
+    )
+  },
+}
+
+export default konfig
