@@ -12,3 +12,5 @@ export type Locale = typeof defaultLocale
 const dictionaries: Record<Locale, Messages> = { id }
 
 export const getMessages = (locale: Locale = defaultLocale): Messages => dictionaries[locale]
+
+export { getMessagesUmum, type MessagesUmum } from './klien'

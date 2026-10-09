@@ -3,7 +3,7 @@
 - Perintah, setup, dan seam pengujian: lihat `README.md`.
 - Tes hanya ditulis di dua seam yang disepakati: Seam 1 (`tests/int`, Payload Local API) dan Seam 2 (`tests/e2e`, smoke Playwright pada build produksi).
 - Setiap perubahan koleksi atau global Payload wajib disertai migrasi baru (`pnpm migrate:create <nama>`).
-- String UI publik lewat `src/i18n`, jangan di-hardcode di komponen.
+- String UI publik lewat `src/i18n`, jangan di-hardcode di komponen. Komponen client (`'use client'`) dan modul yang mereka impor memakai `getMessagesUmum` dari `@/i18n/klien`; `getMessages` dari `@/i18n` membawa copy semua halaman ke bundle browser.
 
 ## Agent skills
 
