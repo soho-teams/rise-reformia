@@ -193,7 +193,12 @@ a:hover {
   top: 0;
   z-index: 40;
   background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow 200ms ease;
+}
+
+/* Tanpa garis bawah; bayangan tipis hanya muncul saat digulir agar header terpisah dari konten. */
+.header[data-digulir='true'] {
+  box-shadow: var(--shadow-sm);
 }
 
 .header__isi {
