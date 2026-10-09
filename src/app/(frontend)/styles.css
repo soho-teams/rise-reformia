@@ -246,15 +246,6 @@ a:hover {
   height: 20px;
 }
 
-/* Simbol matahari lebih ringkas daripada logo lengkap, jadi sedikit lebih tinggi agar seimbang. */
-.header__logo .header__logo-simbol {
-  height: 28px;
-}
-
-.header[data-digulir='true'] .header__logo .header__logo-simbol {
-  height: 24px;
-}
-
 .nav-utama__toggle {
   display: grid;
   place-items: center;
@@ -319,10 +310,6 @@ a:hover {
   transform: rotate(-45deg);
 }
 
-.header__logo-simbol {
-  display: none;
-}
-
 .nav-utama__daftar,
 .nav-utama__sub {
   list-style: none;
@@ -369,14 +356,6 @@ a:hover {
 @media (max-width: 959.98px) {
   .header__isi {
     gap: var(--space-2);
-  }
-
-  .header__logo-lengkap {
-    display: none;
-  }
-
-  .header__logo-simbol {
-    display: block;
   }
 
   /* Hamburger di pojok kanan, setelah tombol Konsultasi. */
