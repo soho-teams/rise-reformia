@@ -33,6 +33,7 @@ dan `output: 'standalone'` yang dimatikan otomatis di Vercel.
    | `S3_ENDPOINT` | Endpoint dari langkah 3, mis. `https://<project-ref>.supabase.co/storage/v1/s3` |
    | `S3_REGION` | Region dari langkah 3, mis. `ap-southeast-1` |
    | `S3_ACCESS_KEY_ID` / `S3_SECRET_ACCESS_KEY` | access key dari langkah 3 |
+   | `DATABASE_POOL_MAX` | `2` (batas koneksi per proses; Session pooler Supabase gratis hanya sekitar 15 koneksi) |
    | `SMTP_*` | opsional; tanpa SMTP, Lead tetap tersimpan dengan status notifikasi gagal |
 
 5. **Deploy.** Build menjalankan `payload migrate` ke database Neon, lalu `next build`.

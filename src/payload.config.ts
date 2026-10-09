@@ -36,6 +36,9 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
+      // Pooler terkelola (mis. Supabase Session pooler) membatasi jumlah koneksi; serverless dan build
+      // membuka banyak proses sekaligus, jadi tiap proses cukup memakai sedikit koneksi.
+      max: Number(process.env.DATABASE_POOL_MAX) || 10,
     },
     // Dev dan tes memakai push schema; produksi menjalankan migrasi saat Payload pertama diinisialisasi.
     prodMigrations: migrations,
