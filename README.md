@@ -74,7 +74,7 @@ Tombol Pratinjau di admin membuka `/next/pratinjau?slug=...`. Rute ini hanya men
 
 ## Demo di Vercel
 
-Lihat `docs/deploy/vercel.md`. Adapter Vercel Blob untuk Media hanya aktif bila `BLOB_READ_WRITE_TOKEN` diisi.
+Lihat `docs/deploy/vercel.md`. Penyimpanan Media di S3 (Supabase Storage) hanya aktif bila `S3_BUCKET` diisi.
 
 ## Produksi
 
