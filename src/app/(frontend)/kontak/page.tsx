@@ -1,7 +1,7 @@
 import { JsonLd } from '@/components/JsonLd'
 import { PenandaData } from '@/components/PenandaData'
 import { getMessages } from '@/i18n'
-import { LAYANAN_LEAD } from '@/lead/periksa'
+import { layananLeadValid } from '@/lead/periksa'
 import { jsonLdRemah } from '@/situs/jsonLd'
 import { metadataHalaman } from '@/situs/metadata'
 import { pengaturanSitusHalaman } from '@/situs/pengaturan'
@@ -39,7 +39,7 @@ export default async function KontakPage({ searchParams }: { searchParams: Promi
       <div className="halaman-kontak__isi">
         <div className="halaman-kontak__form">
           <FormLead
-            layananAwal={(LAYANAN_LEAD as readonly string[]).includes(layanan ?? '') ? layanan : undefined}
+            layananAwal={layananLeadValid(layanan) ? layanan : undefined}
             tautanWhatsapp={wa}
             tampilkanPenanda={!situsTerindeks()}
           />
@@ -47,8 +47,9 @@ export default async function KontakPage({ searchParams }: { searchParams: Promi
 
         <aside aria-labelledby="judul-langsung" className="kontak-langsung">
           <h2 id="judul-langsung">{k.judul}</h2>
+          {!kontak.whatsapp && <PenandaData>{k.penandaWhatsapp}</PenandaData>}
           <dl>
-            {kontak.whatsapp ? (
+            {kontak.whatsapp && (
               <div>
                 <dt>{k.whatsapp}</dt>
                 <dd>
@@ -57,8 +58,6 @@ export default async function KontakPage({ searchParams }: { searchParams: Promi
                   </a>
                 </dd>
               </div>
-            ) : (
-              <PenandaData>{k.penandaWhatsapp}</PenandaData>
             )}
             <div>
               <dt>{k.email}</dt>

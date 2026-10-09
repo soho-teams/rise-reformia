@@ -164,6 +164,7 @@ export const id = {
       persetujuan: 'Untuk melanjutkan, mohon centang persetujuan pemrosesan data.',
       terlaluSering: 'Anda sudah mengirim beberapa kali dalam waktu singkat. Mohon tunggu beberapa menit, lalu coba lagi.',
       server: 'Maaf, pesan Anda belum terkirim. Silakan coba lagi sebentar lagi, atau hubungi kami lewat WhatsApp.',
+      offline: 'Koneksi internet Anda tampaknya terputus. Periksa koneksi, lalu coba kirim lagi.',
       ringkasan: (n: number) => `Ada ${n} isian yang perlu diperbaiki. Periksa kolom yang ditandai.`,
     },
     tombol: { kirim: 'Kirim permintaan konsultasi', mengirim: 'Mengirim...' },

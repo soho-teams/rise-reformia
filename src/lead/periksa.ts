@@ -6,6 +6,9 @@ const t = getMessages().lead
 export const LAYANAN_LEAD = [...SLUG_LAYANAN, 'belum-yakin'] as const
 export type LayananLead = (typeof LAYANAN_LEAD)[number]
 
+export const layananLeadValid = (nilai: unknown): nilai is LayananLead =>
+  typeof nilai === 'string' && (LAYANAN_LEAD as readonly string[]).includes(nilai)
+
 export const PILIHAN_LAYANAN = LAYANAN_LEAD.map((value) => ({ value, label: t.layanan[value] }))
 
 /** Field tersembunyi yang hanya diisi bot. */

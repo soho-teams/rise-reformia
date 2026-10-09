@@ -1,13 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { useActionState } from 'react'
+import { useActionState, useState } from 'react'
 
 import { Centang, Isian } from '@/components/Isian'
 import { kelasTombol } from '@/components/Tombol'
 import { getMessages } from '@/i18n'
 import { RUTE } from '@/situs/rute'
-import { FIELD_HONEYPOT, LAYANAN_LEAD, type FieldLead } from '@/lead/periksa'
+import { FIELD_HONEYPOT, LAYANAN_LEAD, type FieldLead, type LayananLead } from '@/lead/periksa'
 import { kirimLead, type StateFormLead } from './actions'
 
 const t = getMessages().lead
@@ -47,7 +47,7 @@ function IsianTeks({ nama, tipe = 'text', autoComplete, opsional, bantuan, state
 
 type PropsForm = {
   /** Slug Layanan dari `?layanan=` (CTA halaman Layanan), langsung terpilih di isian Layanan diminati. */
-  layananAwal?: string
+  layananAwal?: LayananLead
   /** Tautan wa.me dari Pengaturan Situs; tanpa nomor, tombol WhatsApp di panel sukses tidak tampil. */
   tautanWhatsapp?: string
   /** Staging menampilkan penanda data yang belum dikirim RISE (lihat PenandaData). */
@@ -59,6 +59,7 @@ export function FormLead({ layananAwal, tautanWhatsapp, tampilkanPenanda }: Prop
     ...AWAL,
     nilai: layananAwal ? { layanan: layananAwal } : {},
   })
+  const [offline, setOffline] = useState(false)
 
   if (state.status === 'sukses') {
     return (
@@ -69,7 +70,7 @@ export function FormLead({ layananAwal, tautanWhatsapp, tampilkanPenanda }: Prop
         {tautanWhatsapp && <p className="teks-redup">{t.sukses.penutup}</p>}
         <div className="panel-sukses__aksi">
           {tautanWhatsapp && (
-            <a href={tautanWhatsapp} className="tombol tombol--whatsapp" rel="noopener" target="_blank">
+            <a href={tautanWhatsapp} className={kelasTombol('whatsapp')} rel="noopener" target="_blank">
               {t.sukses.tombolWhatsapp}
             </a>
           )}
@@ -86,7 +87,19 @@ export function FormLead({ layananAwal, tautanWhatsapp, tampilkanPenanda }: Prop
 
   return (
     // key memaksa form dipasang ulang dengan isian terakhir setelah setiap kiriman.
-    <form key={state.percobaan} action={aksi} noValidate aria-labelledby="judul-form" className="form-lead">
+    <form
+      key={state.percobaan}
+      action={aksi}
+      noValidate
+      aria-labelledby="judul-form"
+      className="form-lead"
+      onSubmit={(e) => {
+        // Tanpa koneksi, server action gagal tanpa pesan; isian tetap utuh dan pengunjung diberi tahu.
+        const putus = !navigator.onLine
+        setOffline(putus)
+        if (putus) e.preventDefault()
+      }}
+    >
       <div className="form-lead__kepala">
         <h2 id="judul-form">{t.judulForm}</h2>
         <p className="teks-redup">{t.pengantar}</p>
@@ -95,6 +108,11 @@ export function FormLead({ layananAwal, tautanWhatsapp, tampilkanPenanda }: Prop
       {jumlahError > 0 && (
         <div role="alert" className="ringkasan-error">
           {t.error.ringkasan(jumlahError)}
+        </div>
+      )}
+      {offline && (
+        <div role="alert" className="ringkasan-error">
+          {t.error.offline}
         </div>
       )}
       {state.pesan && (

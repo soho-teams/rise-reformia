@@ -2,18 +2,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { JsonLd } from '@/components/JsonLd'
-import { KartuInsight, KartuLayanan } from '@/components/Kartu'
+import { KartuLayanan } from '@/components/Kartu'
+import { KartuInsightDoc } from '@/components/KartuInsightDoc'
 import { PenandaData } from '@/components/PenandaData'
 import { Tombol } from '@/components/Tombol'
+import { TombolChatWhatsapp } from '@/components/TombolChatWhatsapp'
 import { getMessages } from '@/i18n'
 import { insightTerbaru } from '@/insight/data'
-import { barisMeta, gambar, namaKategori, tanggalTerbit } from '@/insight/tampilan'
+import { gambar } from '@/insight/tampilan'
 import { SLUG_LAYANAN } from '@/layanan'
 import { bagianOpsionalHalaman } from '@/situs/bagianOpsional'
 import { jsonLdOrganisasi } from '@/situs/jsonLd'
 import { metadataHalaman } from '@/situs/metadata'
 import { pengaturanSitusHalaman } from '@/situs/pengaturan'
-import { RUTE, ruteInsight, ruteLayanan } from '@/situs/rute'
+import { RUTE, ruteLayanan } from '@/situs/rute'
 
 const pesan = getMessages()
 const t = pesan.beranda
@@ -140,16 +142,8 @@ export default async function Beranda() {
         </div>
         {insight.length > 0 ? (
           <div className="insight-beranda__daftar">
-            {insight.map((i) => (
-              <KartuInsight
-                key={i.id}
-                judul={i.judul}
-                ringkasan={i.ringkasan}
-                kategori={namaKategori(i.kategori)}
-                meta={barisMeta(tanggalTerbit(i.tanggalTerbit))}
-                href={ruteInsight(i.slug ?? '')}
-                sampul={gambar(i.sampul, 'kartu')}
-              />
+            {insight.map((doc) => (
+              <KartuInsightDoc key={doc.id} insight={doc} />
             ))}
           </div>
         ) : (
@@ -185,11 +179,11 @@ export default async function Beranda() {
               {t.testimoni.judul}
             </h2>
             <div className="testimoni__daftar">
-              {testimoni.map((x) => (
-                <figure key={x.id}>
-                  <blockquote>“{x.kutipan}”</blockquote>
+              {testimoni.map((kutipan) => (
+                <figure key={kutipan.id}>
+                  <blockquote>“{kutipan.kutipan}”</blockquote>
                   <figcaption>
-                    <strong>{x.nama}</strong>, {x.jabatan}, {x.perusahaan}
+                    <strong>{kutipan.nama}</strong>, {kutipan.jabatan}, {kutipan.perusahaan}
                   </figcaption>
                 </figure>
               ))}
@@ -203,9 +197,12 @@ export default async function Beranda() {
           <h2 className="penutup__judul">{t.penutup.judul}</h2>
           <p className="teks-redup">{t.penutup.isi}</p>
         </div>
-        <Tombol href={RUTE.kontak} besar>
-          {pesan.layout.cta}
-        </Tombol>
+        <div className="penutup__aksi">
+          <Tombol href={RUTE.kontak} besar>
+            {pesan.layout.cta}
+          </Tombol>
+          <TombolChatWhatsapp nomor={kontak.whatsapp} pesan={kontak.pesanWhatsapp} varian="garis" besar />
+        </div>
       </section>
     </>
   )

@@ -36,8 +36,10 @@ test.describe('Halaman Layanan', () => {
     await expect(page.getByRole('heading', { name: 'Insight terkait' })).toBeVisible()
     await expect(judul).toBeVisible()
 
-    await page.goto('/layanan/konsultasi-manajemen')
-    await expect(judul).toHaveCount(0)
+    for (const lain of ['konsultasi-manajemen', 'psikologi-industri-organisasi', 'training-pengembangan']) {
+      await page.goto(`/layanan/${lain}`)
+      await expect(judul).toHaveCount(0)
+    }
 
     await page.goto('/insight?kategori=konsultasi-manajemen')
     await expect(judul).toHaveCount(0)

@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
-type Varian = 'utama' | 'garis' | 'teks' | 'terang'
+type Varian = 'utama' | 'garis' | 'teks' | 'terang' | 'whatsapp'
 
 /** Kelas tombol untuk elemen selain tautan, misalnya `<button type="submit">`. */
-export const kelasTombol = (varian: Varian = 'utama') => `tombol tombol--${varian}`
+export const kelasTombol = (varian: Varian = 'utama', besar = false) =>
+  `tombol tombol--${varian}${besar ? ' tombol--besar' : ''}`
 
 /**
  * Tautan bergaya tombol. `utama` untuk satu aksi terpenting di sebuah bagian,
@@ -24,7 +25,7 @@ export function Tombol({
   children: ReactNode
 }) {
   return (
-    <Link href={href} className={`${kelasTombol(varian)}${besar ? ' tombol--besar' : ''}`}>
+    <Link href={href} className={kelasTombol(varian, besar)}>
       {children}
     </Link>
   )

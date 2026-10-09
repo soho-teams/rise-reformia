@@ -3,22 +3,21 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { JsonLd } from '@/components/JsonLd'
-import { KartuInsight } from '@/components/Kartu'
+import { KartuInsightDoc } from '@/components/KartuInsightDoc'
 import { PenandaData } from '@/components/PenandaData'
 import { Tombol } from '@/components/Tombol'
+import { TombolChatWhatsapp } from '@/components/TombolChatWhatsapp'
 import { getMessages } from '@/i18n'
 import { insightTerkait } from '@/insight/data'
-import { barisMeta, gambar, tanggalTerbit } from '@/insight/tampilan'
 import { SLUG_LAYANAN, slugLayananValid } from '@/layanan'
 import { jsonLdLayanan, jsonLdRemah } from '@/situs/jsonLd'
 import { metadataHalaman } from '@/situs/metadata'
 import { pengaturanSitusHalaman } from '@/situs/pengaturan'
-import { RUTE, ruteInsight, ruteKontakLayanan, ruteLayanan } from '@/situs/rute'
+import { RUTE, ruteInsightKategori, ruteKontakLayanan, ruteLayanan } from '@/situs/rute'
 import { situsTerindeks } from '@/situs/url'
-import { tautanWhatsapp } from '@/situs/telepon'
 
 const pesan = getMessages()
-const u = pesan.halamanLayananUmum
+const umum = pesan.halamanLayananUmum
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -44,11 +43,7 @@ export default async function HalamanLayanan({ params }: Props) {
       <Tombol href={ruteKontakLayanan(slug)} besar>
         {pesan.layout.cta}
       </Tombol>
-      {kontak.whatsapp && (
-        <a href={tautanWhatsapp(kontak.whatsapp, t.pesanWhatsapp)} className="tombol tombol--garis tombol--besar" rel="noopener" target="_blank">
-          {u.chatWhatsapp}
-        </a>
-      )}
+      <TombolChatWhatsapp nomor={kontak.whatsapp} pesan={t.pesanWhatsapp} varian="garis" besar />
     </div>
   )
 
@@ -64,7 +59,7 @@ export default async function HalamanLayanan({ params }: Props) {
       />
 
       <section className="wadah hero-layanan">
-        <nav aria-label={u.lokasiHalaman} className="remah">
+        <nav aria-label={umum.lokasiHalaman} className="remah">
           <Link href={RUTE.beranda}>{pesan.layout.nav.beranda}</Link>
           <span aria-hidden="true">/</span>
           <Link href={RUTE.layanan}>{pesan.layout.nav.layanan}</Link>
@@ -127,7 +122,7 @@ export default async function HalamanLayanan({ params }: Props) {
             <PenandaData>{t.cakupan.penanda}</PenandaData>
           </div>
           <div className="cakupan__kolom">
-            <h2 className="judul-3">{u.hasil}</h2>
+            <h2 className="judul-3">{umum.hasil}</h2>
             <p>{t.hasil.pengantar}:</p>
             <ul className="daftar-garis">
               {t.hasil.butir.map((b) => (
@@ -143,21 +138,13 @@ export default async function HalamanLayanan({ params }: Props) {
         <section className="wadah insight-terkait" aria-labelledby="insight-terkait">
           <div className="insight-terkait__kepala">
             <h2 id="insight-terkait" className="judul-3">
-              {u.insightTerkait}
+              {umum.insightTerkait}
             </h2>
-            <Link href={`${RUTE.insight}?kategori=${slug}`}>{u.bacaSemuaInsight}</Link>
+            <Link href={ruteInsightKategori(slug)}>{umum.bacaSemuaInsight}</Link>
           </div>
           <div className="grid-insight">
-            {insight.map((i) => (
-              <KartuInsight
-                key={i.id}
-                judul={i.judul}
-                ringkasan={i.ringkasan}
-                kategori={nama}
-                meta={barisMeta(tanggalTerbit(i.tanggalTerbit))}
-                href={ruteInsight(i.slug ?? '')}
-                sampul={gambar(i.sampul, 'kartu')}
-              />
+            {insight.map((doc) => (
+              <KartuInsightDoc key={doc.id} insight={doc} />
             ))}
           </div>
         </section>
@@ -165,7 +152,7 @@ export default async function HalamanLayanan({ params }: Props) {
 
       {faq.length > 0 && (
         <section className="wadah dua-kolom faq">
-          <h2 className="judul-3 dua-kolom__judul">{u.pertanyaanUmum}</h2>
+          <h2 className="judul-3 dua-kolom__judul">{umum.pertanyaanUmum}</h2>
           <div className="dua-kolom__isi faq__daftar">
             {faq.map((f) => (
               <details key={f.tanya}>

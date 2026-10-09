@@ -16,3 +16,6 @@ export const ruteLayanan = (slug: SlugLayanan) => `/layanan/${slug}`
 export const ruteKontakLayanan = (slug: SlugLayanan) => `${RUTE.kontak}?layanan=${slug}`
 
 export const ruteInsight = (slug: string) => `${RUTE.insight}/${slug}`
+
+/** Daftar Insight yang disaring per Kategori Insight. */
+export const ruteInsightKategori = (slug: SlugLayanan) => `${RUTE.insight}?kategori=${slug}`

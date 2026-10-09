@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { KartuInsight, type UkuranKartuInsight } from '@/components/Kartu'
+import type { UkuranKartuInsight } from '@/components/Kartu'
+import { KartuInsightDoc } from '@/components/KartuInsightDoc'
 import { getMessages } from '@/i18n'
 import { daftarInsightTerbit } from '@/insight/data'
-import { barisMeta, gambar, namaKategori, tanggalTerbit } from '@/insight/tampilan'
 import { JsonLd } from '@/components/JsonLd'
 import { SLUG_LAYANAN, slugLayananValid, type SlugLayanan } from '@/layanan'
 import { jsonLdRemah } from '@/situs/jsonLd'
 import { metadataHalaman } from '@/situs/metadata'
-import { RUTE, ruteInsight } from '@/situs/rute'
+import { RUTE } from '@/situs/rute'
 
 const pesan = getMessages()
 const t = pesan.insight
@@ -52,16 +52,7 @@ export default async function DaftarInsight({ searchParams }: Props) {
   // Di halaman pertama, Insight terbaru ditampilkan lebih besar dari yang lain.
   const [utama, ...lainnya] = halaman === 1 ? hasil.docs : [undefined, ...hasil.docs]
   const kartu = (insight: (typeof hasil.docs)[number], ukuran: UkuranKartuInsight) => (
-    <KartuInsight
-      key={insight.id}
-      ukuran={ukuran}
-      judul={insight.judul}
-      ringkasan={insight.ringkasan}
-      kategori={namaKategori(insight.kategori)}
-      meta={barisMeta(tanggalTerbit(insight.tanggalTerbit))}
-      href={ruteInsight(insight.slug ?? '')}
-      sampul={gambar(insight.sampul, ukuran === 'utama' ? 'sampul' : 'kartu')}
-    />
+    <KartuInsightDoc key={insight.id} insight={insight} ukuran={ukuran} />
   )
 
   return (

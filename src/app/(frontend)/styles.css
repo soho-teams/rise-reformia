@@ -1271,7 +1271,7 @@ a:hover {
   margin: 0;
 }
 
-/* Angka besar biru hanya di latar terang (kontras 4,99 di --color-bg). */
+/* Angka besar biru: di latar pasir kontrasnya 4,45, jadi hanya boleh untuk angka besar seperti ini. */
 .pendekatan__nomor {
   font-family: var(--font-heading);
   font-weight: var(--weight-extrabold);

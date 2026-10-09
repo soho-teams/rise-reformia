@@ -8,6 +8,7 @@ import { bagianOpsionalHalaman } from '@/situs/bagianOpsional'
 import { jsonLdRemah } from '@/situs/jsonLd'
 import { metadataHalaman } from '@/situs/metadata'
 import { RUTE } from '@/situs/rute'
+import { situsTerindeks } from '@/situs/url'
 
 const pesan = getMessages()
 const t = pesan.tentangKami
@@ -94,30 +95,33 @@ export default async function TentangKami() {
         </dl>
       </section>
 
-      <section className="bagian--pasir" aria-labelledby="konsultan">
-        <div className="wadah konsultan">
-          <div className="konsultan__kepala">
-            <h2 id="konsultan" className="judul-2">
-              {t.konsultan.judul}
-            </h2>
-            <p>{t.konsultan.pengantar}</p>
+      {/* Tanpa profil yang ditampilkan, bagian ini hilang di produksi; staging menampilkan penandanya. */}
+      {(konsultan.length > 0 || !situsTerindeks()) && (
+        <section className="bagian--pasir" aria-labelledby="konsultan">
+          <div className="wadah konsultan">
+            <div className="konsultan__kepala">
+              <h2 id="konsultan" className="judul-2">
+                {t.konsultan.judul}
+              </h2>
+              <p>{t.konsultan.pengantar}</p>
+            </div>
+            {konsultan.length > 0 ? (
+              <ul className="konsultan__grid">
+                {konsultan.map((k) => (
+                  <KartuKonsultan
+                    key={k.id}
+                    nama={k.nama}
+                    jabatan={[k.jabatan, k.keahlian].filter(Boolean).join(' · ')}
+                    foto={gambar(k.foto, 'kartu')}
+                  />
+                ))}
+              </ul>
+            ) : (
+              <PenandaData>{t.konsultan.penanda}</PenandaData>
+            )}
           </div>
-          {konsultan.length > 0 ? (
-            <ul className="konsultan__grid">
-              {konsultan.map((k) => (
-                <KartuKonsultan
-                  key={k.id}
-                  nama={k.nama}
-                  jabatan={[k.jabatan, k.keahlian].filter(Boolean).join(' · ')}
-                  foto={gambar(k.foto, 'kartu')}
-                />
-              ))}
-            </ul>
-          ) : (
-            <PenandaData>{t.konsultan.penanda}</PenandaData>
-          )}
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="wadah penutup">
         <div className="penutup__teks">
