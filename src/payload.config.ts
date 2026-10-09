@@ -58,6 +58,9 @@ export default buildConfig({
         region: process.env.S3_REGION,
         // Supabase Storage (dan kebanyakan layanan S3 non-AWS) memakai alamat bergaya path.
         forcePathStyle: true,
+        // AWS SDK baru menambahkan checksum otomatis yang ditolak sebagian layanan S3 non-AWS.
+        requestChecksumCalculation: 'WHEN_REQUIRED',
+        responseChecksumValidation: 'WHEN_REQUIRED',
         credentials: {
           accessKeyId: process.env.S3_ACCESS_KEY_ID ?? '',
           secretAccessKey: process.env.S3_SECRET_ACCESS_KEY ?? '',
