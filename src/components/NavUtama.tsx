@@ -71,9 +71,15 @@ export function NavUtama() {
         className="nav-utama__toggle"
         aria-expanded={menuTerbuka}
         aria-controls="menu-utama"
+        aria-label={t.layout.menu}
         onClick={() => setMenuTerbuka(!menuTerbuka)}
       >
-        {t.layout.menu}
+        {/* Tiga garis hamburger; berubah menjadi tanda silang saat aria-expanded="true" (lihat CSS). */}
+        <span aria-hidden="true" className="nav-utama__ikon">
+          <span />
+          <span />
+          <span />
+        </span>
       </button>
 
       <nav id="menu-utama" aria-label={t.layout.navLabel} className="nav-utama__menu" data-terbuka={menuTerbuka} onClick={tutupSetelahPindah}>
