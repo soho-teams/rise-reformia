@@ -246,16 +246,81 @@ a:hover {
   height: 20px;
 }
 
+/* Simbol matahari lebih ringkas daripada logo lengkap, jadi sedikit lebih tinggi agar seimbang. */
+.header__logo .header__logo-simbol {
+  height: 28px;
+}
+
+.header[data-digulir='true'] .header__logo .header__logo-simbol {
+  height: 24px;
+}
+
 .nav-utama__toggle {
-  min-height: var(--target-sentuh);
-  min-width: var(--target-sentuh);
-  padding: 0 var(--space-4);
-  border: 1.5px solid var(--color-text);
+  display: grid;
+  place-items: center;
+  width: var(--target-sentuh);
+  height: var(--target-sentuh);
+  padding: 0;
+  border: 0;
   border-radius: var(--radius-md);
   background: transparent;
   color: var(--color-text);
-  font: var(--weight-semibold) var(--text-md) var(--font-body);
   cursor: pointer;
+}
+
+.nav-utama__toggle:hover {
+  background: var(--color-surface-alt);
+}
+
+.nav-utama__ikon {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 16px;
+}
+
+.nav-utama__ikon span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: currentColor;
+  transition:
+    transform 200ms ease,
+    opacity 150ms ease,
+    top 200ms ease;
+}
+
+.nav-utama__ikon span:nth-child(1) {
+  top: 0;
+}
+
+.nav-utama__ikon span:nth-child(2) {
+  top: 7px;
+}
+
+.nav-utama__ikon span:nth-child(3) {
+  top: 14px;
+}
+
+/* Saat menu terbuka: garis atas dan bawah berputar menjadi tanda silang, garis tengah hilang. */
+.nav-utama__toggle[aria-expanded='true'] .nav-utama__ikon span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.nav-utama__toggle[aria-expanded='true'] .nav-utama__ikon span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-utama__toggle[aria-expanded='true'] .nav-utama__ikon span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+.header__logo-simbol {
+  display: none;
 }
 
 .nav-utama__daftar,
@@ -304,6 +369,24 @@ a:hover {
 @media (max-width: 959.98px) {
   .header__isi {
     gap: var(--space-2);
+  }
+
+  .header__logo-lengkap {
+    display: none;
+  }
+
+  .header__logo-simbol {
+    display: block;
+  }
+
+  /* Hamburger di pojok kanan, setelah tombol Konsultasi. */
+  .nav-utama {
+    order: 2;
+    margin-left: 0;
+  }
+
+  .header__cta {
+    margin-left: auto;
   }
 
   .header__cta-panjang {
