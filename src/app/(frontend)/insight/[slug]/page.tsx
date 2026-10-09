@@ -9,7 +9,10 @@ import { Tombol } from '@/components/Tombol'
 import { getMessages } from '@/i18n'
 import { insightMenurutSlug } from '@/insight/data'
 import { barisMeta, gambar, namaKategori, tanggalTerbit, waktuBaca } from '@/insight/tampilan'
-import { RUTE } from '@/situs/rute'
+import { JsonLd } from '@/components/JsonLd'
+import { jsonLdArtikel, jsonLdRemah } from '@/situs/jsonLd'
+import { metadataHalaman } from '@/situs/metadata'
+import { RUTE, ruteInsight } from '@/situs/rute'
 
 const t = getMessages()
 
@@ -19,30 +22,54 @@ const MAKS_JUDUL_META = 60 - t.insight.metaDetail('').length
 const potongJudul = (judul: string) =>
   judul.length > MAKS_JUDUL_META ? `${judul.slice(0, MAKS_JUDUL_META - 1).trimEnd()}…` : judul
 
+const deskripsiSeo = (insight: { seo?: { deskripsi?: string | null } | null; ringkasan: string }) =>
+  insight.seo?.deskripsi || insight.ringkasan
+
 // Detail dirender saat pertama diminta lalu di-cache sampai Insight berubah (revalidasiSitus).
 export const generateStaticParams = async () => []
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { insight } = await insightMenurutSlug((await params).slug)
+  const { slug } = await params
+  const { insight } = await insightMenurutSlug(slug)
   if (!insight) return {}
   const og = gambar(insight.sampul, 'og')
-  return {
+  return metadataHalaman({
     // Judul SEO dari Editor dipakai utuh. Tanpa itu, pola copy "{Judul} | Insight RISE"
     // dengan judul dipotong agar total maksimal 60 karakter.
     title: insight.seo?.judul || t.insight.metaDetail(potongJudul(insight.judul)),
-    description: insight.seo?.deskripsi || insight.ringkasan,
-    openGraph: { type: 'article', images: og ? [{ url: og.src, width: og.width, height: og.height }] : undefined },
-  }
+    description: deskripsiSeo(insight),
+    path: ruteInsight(slug),
+    tipe: 'article',
+    gambar: og && { url: og.src, width: og.width, height: og.height, alt: og.alt },
+  })
 }
 
 export default async function DetailInsight({ params }: Props) {
-  const { insight, pratinjau } = await insightMenurutSlug((await params).slug)
+  const { slug } = await params
+  const { insight, pratinjau } = await insightMenurutSlug(slug)
   if (!insight) notFound()
 
   const sampul = gambar(insight.sampul, 'sampul')
 
   return (
     <article className="wadah detail-insight">
+      <JsonLd
+        data={jsonLdArtikel({
+          judul: insight.judul,
+          deskripsi: deskripsiSeo(insight),
+          path: ruteInsight(slug),
+          gambar: sampul?.src,
+          terbit: insight.tanggalTerbit,
+          diubah: insight.updatedAt,
+        })}
+      />
+      <JsonLd
+        data={jsonLdRemah([
+          { nama: t.layout.nav.beranda, path: RUTE.beranda },
+          { nama: t.insight.judul, path: RUTE.insight },
+          { nama: insight.judul, path: ruteInsight(slug) },
+        ])}
+      />
       {pratinjau && (
         <p role="status" className="detail-insight__pratinjau">
           {t.insight.pratinjau} {/* Route handler, bukan halaman: navigasi penuh agar cookie pratinjau dihapus sebelum render. */}

@@ -1,24 +1,6 @@
-import { expect, test, type APIRequestContext } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 
-import { isiTeks } from '../helpers/lexical'
-import { masukAdmin } from './akun'
-
-async function buatInsight(request: APIRequestContext, judul: string, status: 'published' | 'draft') {
-  const token = await masukAdmin(request)
-  const layanan = await (await request.get('/api/layanan?where[slug][equals]=konsultasi-bisnis')).json()
-  const res = await request.post(`/api/insight${status === 'draft' ? '?draft=true' : ''}`, {
-    headers: { Authorization: `JWT ${token}` },
-    data: {
-      judul,
-      ringkasan: `Ringkasan untuk ${judul}.`,
-      isi: isiTeks('Satu paragraf isi Insight untuk smoke test.'),
-      kategori: layanan.docs[0].id,
-      _status: status,
-    },
-  })
-  expect(res.ok()).toBe(true)
-  return { ...(await res.json()).doc, token } as { id: number; slug: string; token: string }
-}
+import { buatInsight } from './insight'
 
 test.describe('Insight publik', () => {
   test('Insight terbit muncul di daftar dan detail', async ({ page, request }) => {

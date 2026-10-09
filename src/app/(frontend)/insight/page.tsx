@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
@@ -6,15 +5,24 @@ import { KartuInsight, type UkuranKartuInsight } from '@/components/Kartu'
 import { getMessages } from '@/i18n'
 import { daftarInsightTerbit } from '@/insight/data'
 import { barisMeta, gambar, namaKategori, tanggalTerbit } from '@/insight/tampilan'
-import { RUTE } from '@/situs/rute'
+import { metadataHalaman } from '@/situs/metadata'
+import { JsonLd } from '@/components/JsonLd'
+import { jsonLdRemah } from '@/situs/jsonLd'
+import { RUTE, ruteInsight } from '@/situs/rute'
 
 const t = getMessages().insight
 
-export const metadata: Metadata = t.meta
-
 const hrefHalaman = (n: number) => (n <= 1 ? RUTE.insight : `${RUTE.insight}?halaman=${n}`)
 
-export default async function DaftarInsight({ searchParams }: { searchParams: Promise<{ halaman?: string }> }) {
+type Props = { searchParams: Promise<{ halaman?: string }> }
+
+// Setiap halaman paginasi kanonis ke URL-nya sendiri, karena isinya berbeda.
+export async function generateMetadata({ searchParams }: Props) {
+  const halaman = Number((await searchParams).halaman ?? 1)
+  return metadataHalaman({ ...t.meta, path: hrefHalaman(Number.isInteger(halaman) ? halaman : 1) })
+}
+
+export default async function DaftarInsight({ searchParams }: Props) {
   const { halaman: param } = await searchParams
   const halaman = param === undefined ? 1 : Number(param)
   if (!Number.isInteger(halaman) || halaman < 1) notFound()
@@ -32,13 +40,19 @@ export default async function DaftarInsight({ searchParams }: { searchParams: Pr
       ringkasan={insight.ringkasan}
       kategori={namaKategori(insight.kategori)}
       meta={barisMeta(tanggalTerbit(insight.tanggalTerbit))}
-      href={`${RUTE.insight}/${insight.slug}`}
+      href={ruteInsight(insight.slug ?? '')}
       sampul={gambar(insight.sampul, ukuran === 'utama' ? 'sampul' : 'kartu')}
     />
   )
 
   return (
     <div className="wadah halaman-insight">
+      <JsonLd
+        data={jsonLdRemah([
+          { nama: getMessages().layout.nav.beranda, path: RUTE.beranda },
+          { nama: t.judul, path: RUTE.insight },
+        ])}
+      />
       <header className="halaman-insight__kepala">
         <h1 className="judul-1">{t.judul}</h1>
         <p className="teks-redup">{t.subjudul}</p>

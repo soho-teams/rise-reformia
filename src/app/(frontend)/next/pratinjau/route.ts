@@ -5,7 +5,7 @@ import { getPayload } from 'payload'
 
 import { getMessages } from '@/i18n'
 import { buatSlug } from '@/insight/slug'
-import { RUTE } from '@/situs/rute'
+import { ruteInsight } from '@/situs/rute'
 
 const t = getMessages().insight.rutePratinjau
 
@@ -20,5 +20,5 @@ export async function GET(request: Request) {
   if (!slug || buatSlug(slug) !== slug) return new Response(t.slugTidakValid, { status: 400 })
 
   ;(await draftMode()).enable()
-  redirect(`${RUTE.insight}/${slug}`)
+  redirect(ruteInsight(slug))
 }
