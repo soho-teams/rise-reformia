@@ -1,5 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { s3Storage } from '@payloadcms/storage-s3'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -46,12 +46,23 @@ export default buildConfig({
     await pastikanPengaturanSitus(payload)
   },
   plugins: [
-    // Vercel tidak punya disk yang menetap, jadi unggahan Media disimpan di Vercel Blob bila tokennya ada.
-    // Di VPS (tanpa token) Media tetap tersimpan di folder media/ seperti biasa.
-    vercelBlobStorage({
-      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+    // Hosting tanpa disk menetap (demo Vercel) menyimpan unggahan Media di storage S3, misalnya
+    // Supabase Storage, bila S3_BUCKET diisi. Tanpa itu (VPS), Media tersimpan di folder media/.
+    // File tetap disajikan lewat /api/media/file/..., jadi bucket boleh private.
+    s3Storage({
+      enabled: Boolean(process.env.S3_BUCKET),
       collections: { media: true },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
+      bucket: process.env.S3_BUCKET ?? '',
+      config: {
+        endpoint: process.env.S3_ENDPOINT,
+        region: process.env.S3_REGION,
+        // Supabase Storage (dan kebanyakan layanan S3 non-AWS) memakai alamat bergaya path.
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID ?? '',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY ?? '',
+        },
+      },
     }),
   ],
 })
