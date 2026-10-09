@@ -11,7 +11,7 @@ test.describe('Smoke', () => {
     expect(response?.status()).toBe(200)
     await expect(page.locator('html')).toHaveAttribute('lang', 'id')
     await expect(page).toHaveTitle(/RISE/)
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('RISE')
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Bisnis yang bertumbuh dimulai dari organisasi yang tertata.')
   })
 
   test('menu Pengguna tidak tampil untuk Penulis', async ({ page, request }) => {

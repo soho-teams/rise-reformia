@@ -65,7 +65,8 @@ export const PengaturanSitus: GlobalConfig = {
           name: 'pesanWhatsapp',
           label: 'Pesan pembuka',
           type: 'textarea',
-          defaultValue: 'Halo RISE, saya ingin berdiskusi tentang kebutuhan organisasi kami.',
+          // Dari docs/copy/kontak.md, bagian Tombol WhatsApp.
+          defaultValue: 'Halo RISE, saya ingin berdiskusi tentang kebutuhan organisasi/usaha saya. Mohon informasinya.',
           admin: { description: 'Teks yang sudah terisi saat pengunjung membuka chat.' },
         },
       ],

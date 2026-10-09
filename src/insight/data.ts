@@ -57,3 +57,16 @@ export async function insightTerkait(kategori: SlugLayanan) {
   })
   return docs
 }
+
+/** Insight terbit terbaru untuk Beranda. */
+export async function insightTerbaru(jumlah: number) {
+  const payload = await getPayload({ config })
+  const { docs } = await payload.find({
+    collection: 'insight',
+    overrideAccess: false,
+    sort: '-tanggalTerbit',
+    limit: jumlah,
+    depth: 1,
+  })
+  return docs
+}

@@ -3,14 +3,22 @@ import type { MetadataRoute } from 'next'
 import { getPayload } from 'payload'
 
 import { SLUG_LAYANAN } from '@/layanan'
+import { getMessages } from '@/i18n'
 import { RUTE, ruteInsight, ruteLayanan } from '@/situs/rute'
 import { urlAbsolut } from '@/situs/url'
 
 // Dibuat per permintaan supaya Insight yang baru terbit langsung masuk tanpa deploy ulang.
 export const dynamic = 'force-dynamic'
 
-// Halaman publik yang sudah ada. Tambahkan Kebijakan Privasi begitu halamannya dibuat (SOH-153).
-const HALAMAN_STATIS = [RUTE.beranda, RUTE.tentangKami, ...SLUG_LAYANAN.map(ruteLayanan), RUTE.insight, RUTE.kontak]
+// Semua halaman statis publik. Kebijakan Privasi baru masuk sitemap setelah teksnya tidak lagi draf.
+const HALAMAN_STATIS = [
+  RUTE.beranda,
+  RUTE.tentangKami,
+  ...SLUG_LAYANAN.map(ruteLayanan),
+  RUTE.insight,
+  RUTE.kontak,
+  ...(getMessages().kebijakanPrivasi.draf ? [] : [RUTE.kebijakanPrivasi]),
+]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const payload = await getPayload({ config })
