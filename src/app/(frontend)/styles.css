@@ -2179,6 +2179,12 @@ a:hover {
     text-align: center;
   }
 
+  /* Setiap bagian selebar layar, supaya tidak ada dua kolom sempit yang masing-masing rata tengah. */
+  .footer__identitas,
+  .footer__grup {
+    flex-basis: 100%;
+  }
+
   .footer__identitas,
   .footer__grup,
   .footer__kontak address {
