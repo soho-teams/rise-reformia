@@ -1,8 +1,11 @@
 const site = {
   name: 'RISE',
   legalName: 'Reformia Inspirasi Semesta',
+  // Meta bawaan dari docs/copy/global.md (SOH-142).
+  title: 'RISE | Reformia Inspirasi Semesta',
+  altGambarOg: 'RISE, Reformia Inspirasi Semesta: menata organisasi dengan cara yang manusiawi.',
   description:
-    'RISE (Reformia Inspirasi Semesta) adalah mitra konsultan manajemen, psikologi industri & organisasi, konsultasi bisnis, serta training & pengembangan.',
+    'RISE (Reformia Inspirasi Semesta) adalah firma konsultan manajemen, psikologi industri dan organisasi, bisnis, serta pengembangan SDM untuk Klien B2B.',
 }
 
 const layanan = {
@@ -79,6 +82,12 @@ export const id = {
     kontak: 'Hubungi kami',
   },
   home: {
+    // Dari docs/copy/beranda.md (SOH-142).
+    meta: {
+      title: 'RISE | Konsultan Manajemen, SDM, dan Bisnis untuk Organisasi',
+      description:
+        'RISE mendampingi HR, direksi, dan owner bisnis menata strategi, orang, dan usaha lewat empat Layanan konsultasi dan pengembangan. Jadwalkan konsultasi.',
+    },
     placeholderTitle: `${site.legalName} (${site.name})`,
     placeholderBody: 'Website kami sedang disiapkan. Nantikan segera.',
   },

@@ -11,3 +11,5 @@ export const RUTE = {
 } as const
 
 export const ruteLayanan = (slug: SlugLayanan) => `/layanan/${slug}`
+
+export const ruteInsight = (slug: string) => `${RUTE.insight}/${slug}`

@@ -58,6 +58,14 @@ Penulis Insight terisi otomatis dari pengguna yang login dan hanya dipakai di CM
 
 Tombol Pratinjau di admin membuka `/next/pratinjau?slug=...`. Rute ini hanya mengaktifkan draft mode bila pengguna sedang login ke CMS, dan draf hanya terbaca selama sesi itu masih aktif. `/next/keluar-pratinjau` mematikannya kembali.
 
+## SEO
+
+- Metadata halaman dibuat lewat `metadataHalaman()` (`src/situs/metadata.ts`): judul, deskripsi, URL kanonis, Open Graph, dan Twitter Card. Halaman tanpa gambar sendiri memakai `public/brand/og-rise.png` (sumbernya `docs/brand/og-bawaan.html`).
+- `sitemap.xml` dibuat per permintaan dan memuat halaman statis serta Insight terbit. Tambahkan halaman baru ke `HALAMAN_STATIS` di `src/app/(frontend)/sitemap.ts`.
+- `robots.txt` (`src/app/robots.ts`) memblokir `/admin`, `/api`, dan `/next`.
+- JSON-LD ada di `src/situs/jsonLd.ts`: Organization di Beranda, Article dan BreadcrumbList di detail Insight.
+- `SITE_URL` menentukan domain kanonis. Staging mengisi `SITE_NOINDEX=true` saat build dan saat server berjalan (halaman statis membacanya saat build; robots, sitemap, dan halaman dinamis saat berjalan), sehingga semua halaman diberi `noindex` dan `robots.txt` memblokir semuanya. `www.rise-reformia.id` diarahkan permanen ke `rise-reformia.id` (`next.config.ts`).
+
 ## Database dan migrasi
 
 - Dev dan tes: Payload melakukan push schema secara otomatis.

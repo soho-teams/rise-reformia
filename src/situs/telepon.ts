@@ -14,7 +14,10 @@ export const nomorPonselValid = (nomor: string): boolean =>
 export const nomorTeleponValid = (nomor: string): boolean =>
   /^\+?[\d\s()-]+$/.test(nomor) && hanyaAngka(nomor).length >= 6
 
-export const hrefTelepon = (nomor: string) => `tel:+${nomorInternasional(nomor)}`
+/** Format E.164, misalnya "+62217362639", untuk tautan tel: dan data terstruktur. */
+export const nomorE164 = (nomor: string) => `+${nomorInternasional(nomor)}`
+
+export const hrefTelepon = (nomor: string) => `tel:${nomorE164(nomor)}`
 
 /** Nomor ponsel "628123456789" menjadi "+62 812-3456-789" untuk ditampilkan. */
 export function tampilNomorPonsel(nomor: string): string {
