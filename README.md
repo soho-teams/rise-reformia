@@ -50,7 +50,7 @@ Di panel admin, Admin menandai status tindak lanjut Lead (`baru`, `dihubungi`, `
 
 ## Insight
 
-Koleksi `insight` memakai drafts. Penulis menyusun draf miliknya sendiri. Editor ke atas menerbitkan, menarik, dan menyunting Insight siapa pun. Publik hanya melihat Insight yang terbit (`/insight`, `/insight/[slug]`). Setiap perubahan Insight memanggil `revalidasiSitus()` (`src/insight/revalidasi.ts`), jadi halaman yang sudah di-cache diperbarui tanpa deploy ulang.
+Koleksi `insight` memakai drafts. Penulis menyusun draf miliknya sendiri. Editor ke atas menerbitkan, menarik, dan menyunting Insight siapa pun. Publik hanya melihat Insight yang terbit (`/insight`, `/insight/[slug]`). Setiap perubahan Insight memanggil `revalidasiSitus()` (`src/insight/revalidasi.ts`), jadi halaman yang sudah di-cache diperbarui tanpa deploy ulang. Tanda revalidasi ini hanya ada di memori server, jadi layout publik juga memasang `revalidate = 3600`: bila server restart sebelum halaman diminta lagi, versi lama pulih sendiri paling lama satu jam.
 
 Kategori Insight adalah relasi ke koleksi `layanan`. Empat entrinya dibuat otomatis saat Payload mulai (`pastikanLayanan` di `onInit`), memakai slug yang sama dengan isian Layanan di form Lead (`src/layanan.ts`), dan tidak bisa ditambah atau dihapus dari admin.
 

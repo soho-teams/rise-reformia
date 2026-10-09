@@ -1,3 +1,5 @@
+import { tentangKami } from './halaman/tentangKami'
+
 const site = {
   name: 'RISE',
   legalName: 'Reformia Inspirasi Semesta',
@@ -17,6 +19,7 @@ const layanan = {
 
 export const id = {
   site,
+  tentangKami,
   layanan,
   // Copy dari docs/copy/global.md (SOH-142).
   layout: {

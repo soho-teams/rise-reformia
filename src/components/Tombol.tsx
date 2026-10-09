@@ -11,9 +11,20 @@ export const kelasTombol = (varian: Varian = 'utama') => `tombol tombol--${varia
  * `garis` untuk aksi pendamping, `teks` untuk tautan aksi bergaris bawah,
  * `terang` untuk aksi utama di atas latar navy.
  */
-export function Tombol({ href, varian = 'utama', children }: { href: string; varian?: Varian; children: ReactNode }) {
+export function Tombol({
+  href,
+  varian = 'utama',
+  besar,
+  children,
+}: {
+  href: string
+  varian?: Varian
+  /** Ukuran CTA utama di hero dan penutup halaman. */
+  besar?: boolean
+  children: ReactNode
+}) {
   return (
-    <Link href={href} className={kelasTombol(varian)}>
+    <Link href={href} className={`${kelasTombol(varian)}${besar ? ' tombol--besar' : ''}`}>
       {children}
     </Link>
   )

@@ -9,7 +9,9 @@ import { Insight } from './collections/Insight'
 import { Layanan, pastikanLayanan } from './collections/Layanan'
 import { Leads } from './collections/Leads'
 import { Media } from './collections/Media'
+import { Klien, Konsultan, Testimoni } from './collections/profil'
 import { Users } from './collections/Users'
+import { BagianOpsional } from './globals/BagianOpsional'
 import { PengaturanSitus, pastikanPengaturanSitus } from './globals/PengaturanSitus'
 import { migrations } from './migrations'
 
@@ -23,8 +25,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Insight, Layanan, Media, Users, Leads],
-  globals: [PengaturanSitus],
+  collections: [Insight, Layanan, Media, Konsultan, Klien, Testimoni, Users, Leads],
+  globals: [PengaturanSitus, BagianOpsional],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
