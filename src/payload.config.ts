@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
@@ -44,5 +45,13 @@ export default buildConfig({
     await pastikanLayanan(payload)
     await pastikanPengaturanSitus(payload)
   },
-  plugins: [],
+  plugins: [
+    // Vercel tidak punya disk yang menetap, jadi unggahan Media disimpan di Vercel Blob bila tokennya ada.
+    // Di VPS (tanpa token) Media tetap tersimpan di folder media/ seperti biasa.
+    vercelBlobStorage({
+      enabled: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+      collections: { media: true },
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
+  ],
 })

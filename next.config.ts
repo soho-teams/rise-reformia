@@ -7,8 +7,8 @@ const __filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(__filename)
 
 const nextConfig: NextConfig = {
-  // Dibutuhkan Dockerfile produksi (image berisi server.js mandiri).
-  output: 'standalone',
+  // Dibutuhkan Dockerfile produksi (image berisi server.js mandiri); Vercel membangun dengan caranya sendiri.
+  output: process.env.VERCEL ? undefined : 'standalone',
   // Domain utama tanpa www; www.rise-reformia.id diarahkan permanen ke sana.
   async redirects() {
     return [
