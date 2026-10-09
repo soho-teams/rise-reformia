@@ -64,3 +64,17 @@ export function jsonLdRemah(remah: { nama: string; path: string }[]) {
     })),
   }
 }
+
+/** Service untuk setiap halaman Layanan, dengan RISE sebagai penyedia. */
+export function jsonLdLayanan(layanan: { nama: string; deskripsi: string; path: string }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: layanan.nama,
+    serviceType: layanan.nama,
+    description: layanan.deskripsi,
+    url: urlAbsolut(layanan.path),
+    areaServed: { '@type': 'Country', name: 'Indonesia' },
+    provider: organisasi(),
+  }
+}

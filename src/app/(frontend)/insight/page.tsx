@@ -5,29 +5,48 @@ import { KartuInsight, type UkuranKartuInsight } from '@/components/Kartu'
 import { getMessages } from '@/i18n'
 import { daftarInsightTerbit } from '@/insight/data'
 import { barisMeta, gambar, namaKategori, tanggalTerbit } from '@/insight/tampilan'
-import { metadataHalaman } from '@/situs/metadata'
 import { JsonLd } from '@/components/JsonLd'
+import { SLUG_LAYANAN, slugLayananValid, type SlugLayanan } from '@/layanan'
 import { jsonLdRemah } from '@/situs/jsonLd'
+import { metadataHalaman } from '@/situs/metadata'
 import { RUTE, ruteInsight } from '@/situs/rute'
 
-const t = getMessages().insight
+const pesan = getMessages()
+const t = pesan.insight
 
-const hrefHalaman = (n: number) => (n <= 1 ? RUTE.insight : `${RUTE.insight}?halaman=${n}`)
+/** URL daftar yang bisa dibagikan: `?kategori=` untuk saringan, `?halaman=` untuk paginasi. */
+function hrefDaftar(kategori?: SlugLayanan, halaman = 1) {
+  const q = new URLSearchParams()
+  if (kategori) q.set('kategori', kategori)
+  if (halaman > 1) q.set('halaman', String(halaman))
+  const s = q.toString()
+  return s ? `${RUTE.insight}?${s}` : RUTE.insight
+}
 
-type Props = { searchParams: Promise<{ halaman?: string }> }
+type Props = { searchParams: Promise<{ halaman?: string; kategori?: string }> }
 
-// Setiap halaman paginasi kanonis ke URL-nya sendiri, karena isinya berbeda.
+async function bacaParameter(searchParams: Props['searchParams']) {
+  const { halaman: h, kategori: k } = await searchParams
+  const halaman = h === undefined ? 1 : Number(h)
+  const kategori = k === undefined ? undefined : slugLayananValid(k) ? k : null
+  return { halaman, kategori }
+}
+
+// Setiap saringan dan halaman paginasi kanonis ke URL-nya sendiri, karena isinya berbeda.
 export async function generateMetadata({ searchParams }: Props) {
-  const halaman = Number((await searchParams).halaman ?? 1)
-  return metadataHalaman({ ...t.meta, path: hrefHalaman(Number.isInteger(halaman) ? halaman : 1) })
+  const { halaman, kategori } = await bacaParameter(searchParams)
+  return metadataHalaman({
+    ...t.meta,
+    path: hrefDaftar(kategori ?? undefined, Number.isInteger(halaman) && halaman > 0 ? halaman : 1),
+  })
 }
 
 export default async function DaftarInsight({ searchParams }: Props) {
-  const { halaman: param } = await searchParams
-  const halaman = param === undefined ? 1 : Number(param)
-  if (!Number.isInteger(halaman) || halaman < 1) notFound()
+  const { halaman, kategori: saringan } = await bacaParameter(searchParams)
+  if (!Number.isInteger(halaman) || halaman < 1 || saringan === null) notFound()
+  const kategori = saringan ?? undefined
 
-  const hasil = await daftarInsightTerbit(halaman)
+  const hasil = await daftarInsightTerbit(halaman, kategori)
   if (halaman > 1 && hasil.docs.length === 0) notFound()
 
   // Di halaman pertama, Insight terbaru ditampilkan lebih besar dari yang lain.
@@ -49,7 +68,7 @@ export default async function DaftarInsight({ searchParams }: Props) {
     <div className="wadah halaman-insight">
       <JsonLd
         data={jsonLdRemah([
-          { nama: getMessages().layout.nav.beranda, path: RUTE.beranda },
+          { nama: pesan.layout.nav.beranda, path: RUTE.beranda },
           { nama: t.judul, path: RUTE.insight },
         ])}
       />
@@ -58,8 +77,20 @@ export default async function DaftarInsight({ searchParams }: Props) {
         <p className="teks-redup">{t.subjudul}</p>
       </header>
 
+      <nav aria-label={t.filterLabel} className="filter-kategori">
+        <ul>
+          {[undefined, ...SLUG_LAYANAN].map((slug) => (
+            <li key={slug ?? 'semua'}>
+              <Link href={hrefDaftar(slug)} aria-current={slug === kategori ? 'page' : undefined}>
+                {slug ? pesan.layanan[slug] : t.filterSemua}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       {hasil.totalDocs === 0 ? (
-        <p className="halaman-insight__kosong">{t.kosong}</p>
+        <p className="halaman-insight__kosong">{kategori ? t.kosongFilter : t.kosong}</p>
       ) : (
         <>
           {utama && kartu(utama, 'utama')}
@@ -70,13 +101,13 @@ export default async function DaftarInsight({ searchParams }: Props) {
       {hasil.totalPages > 1 && (
         <nav aria-label={t.navigasiHalaman} className="paginasi">
           {hasil.hasPrevPage && (
-            <Link href={hrefHalaman(halaman - 1)} rel="prev">
+            <Link href={hrefDaftar(kategori, halaman - 1)} rel="prev">
               {t.sebelumnya}
             </Link>
           )}
           <span>{t.halamanKe(halaman, hasil.totalPages)}</span>
           {hasil.hasNextPage && (
-            <Link href={hrefHalaman(halaman + 1)} rel="next">
+            <Link href={hrefDaftar(kategori, halaman + 1)} rel="next">
               {t.berikutnya}
             </Link>
           )}

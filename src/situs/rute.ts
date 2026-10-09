@@ -12,4 +12,7 @@ export const RUTE = {
 
 export const ruteLayanan = (slug: SlugLayanan) => `/layanan/${slug}`
 
+/** Form Kontak dengan Layanan diminati sudah terpilih. */
+export const ruteKontakLayanan = (slug: SlugLayanan) => `${RUTE.kontak}?layanan=${slug}`
+
 export const ruteInsight = (slug: string) => `${RUTE.insight}/${slug}`

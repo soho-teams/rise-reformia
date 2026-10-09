@@ -1,3 +1,4 @@
+import { halamanLayanan } from './halaman/layanan'
 import { tentangKami } from './halaman/tentangKami'
 
 const site = {
@@ -20,6 +21,16 @@ const layanan = {
 export const id = {
   site,
   tentangKami,
+  halamanLayanan,
+  // Label bersama halaman Layanan (docs/copy/global.md dan mockup Layanan).
+  halamanLayananUmum: {
+    lokasiHalaman: 'Lokasi halaman',
+    hasil: 'Hasil yang diharapkan',
+    insightTerkait: 'Insight terkait',
+    bacaSemuaInsight: 'Baca semua Insight',
+    pertanyaanUmum: 'Pertanyaan umum',
+    chatWhatsapp: 'Chat via WhatsApp',
+  },
   layanan,
   // Copy dari docs/copy/global.md (SOH-142).
   layout: {
@@ -58,6 +69,9 @@ export const id = {
     judul: 'Insight',
     subjudul: 'Tulisan dari tim RISE tentang strategi, SDM, dan pengembangan usaha.',
     kosong: 'Belum ada Insight yang diterbitkan. Silakan kembali lagi segera.',
+    kosongFilter: 'Belum ada Insight di kategori ini. Coba lihat kategori lain.',
+    filterLabel: 'Saring menurut Kategori Insight',
+    filterSemua: 'Semua',
     penulis: 'Tim RISE',
     waktuBaca: (menit: number) => `${menit} menit baca`,
     sebelumnya: 'Sebelumnya',
