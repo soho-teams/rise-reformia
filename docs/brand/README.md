@@ -75,6 +75,7 @@ Rasio dihitung dengan rumus luminans relatif WCAG 2.x. Target AA: 4,5:1 untuk te
 | `--color-text-muted-on-dark` | #D3DEEC | teks sekunder di `--color-dark-bg` (footer, seksi navy) | 8,46 |
 | `--color-line-on-dark` | #4A6890 | hanya garis pemisah dekoratif di `--color-dark-bg` | 2,02 (tidak untuk teks atau batas komponen) |
 | `--color-whatsapp` | #128C7E | ikon putih tombol WhatsApp mengambang, dengan border putih 2 px | 4,14 (lolos 3:1 untuk ikon/komponen UI; jangan untuk teks kecil) |
+| `--color-whatsapp-tombol` | #0F7A6E | tombol berteks "Chat via WhatsApp", teks putih | 5,21 |
 
 **Sekunder: amber** (matahari terbit; aksen, bukan teks di latar terang)
 

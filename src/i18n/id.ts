@@ -1,3 +1,8 @@
+import { beranda } from './halaman/beranda'
+import { kebijakanPrivasi } from './halaman/kebijakanPrivasi'
+import { halamanLayanan } from './halaman/layanan'
+import { tentangKami } from './halaman/tentangKami'
+
 const site = {
   name: 'RISE',
   legalName: 'Reformia Inspirasi Semesta',
@@ -17,6 +22,19 @@ const layanan = {
 
 export const id = {
   site,
+  beranda,
+  tentangKami,
+  kebijakanPrivasi,
+  halamanLayanan,
+  // Label bersama halaman Layanan (docs/copy/global.md dan mockup Layanan).
+  halamanLayananUmum: {
+    lokasiHalaman: 'Lokasi halaman',
+    hasil: 'Hasil yang diharapkan',
+    insightTerkait: 'Insight terkait',
+    bacaSemuaInsight: 'Baca semua Insight',
+    pertanyaanUmum: 'Pertanyaan umum',
+    chatWhatsapp: 'Chat via WhatsApp',
+  },
   layanan,
   // Copy dari docs/copy/global.md (SOH-142).
   layout: {
@@ -55,6 +73,9 @@ export const id = {
     judul: 'Insight',
     subjudul: 'Tulisan dari tim RISE tentang strategi, SDM, dan pengembangan usaha.',
     kosong: 'Belum ada Insight yang diterbitkan. Silakan kembali lagi segera.',
+    kosongFilter: 'Belum ada Insight di kategori ini. Coba lihat kategori lain.',
+    filterLabel: 'Saring menurut Kategori Insight',
+    filterSemua: 'Semua',
     penulis: 'Tim RISE',
     waktuBaca: (menit: number) => `${menit} menit baca`,
     sebelumnya: 'Sebelumnya',
@@ -80,16 +101,6 @@ export const id = {
     beranda: 'Kembali ke Beranda',
     layanan: 'Lihat Layanan kami',
     kontak: 'Hubungi kami',
-  },
-  home: {
-    // Dari docs/copy/beranda.md (SOH-142).
-    meta: {
-      title: 'RISE | Konsultan Manajemen, SDM, dan Bisnis untuk Organisasi',
-      description:
-        'RISE mendampingi HR, direksi, dan owner bisnis menata strategi, orang, dan usaha lewat empat Layanan konsultasi dan pengembangan. Jadwalkan konsultasi.',
-    },
-    placeholderTitle: `${site.legalName} (${site.name})`,
-    placeholderBody: 'Website kami sedang disiapkan. Nantikan segera.',
   },
   // Copy dari docs/copy/kontak.md (SOH-142).
   lead: {
@@ -131,8 +142,13 @@ export const id = {
       ...layanan,
       'belum-yakin': 'Belum yakin / perlu diskusi',
     },
-    persetujuan:
-      'Saya menyetujui RISE memproses data pribadi yang saya isi pada form ini untuk menanggapi permintaan konsultasi saya, sesuai Kebijakan Privasi.',
+    judulForm: 'Form permintaan konsultasi',
+    // Kalimat persetujuan dipecah supaya "Kebijakan Privasi" bisa menjadi tautan.
+    persetujuan: {
+      awal: 'Saya menyetujui RISE memproses data pribadi yang saya isi pada form ini untuk menanggapi permintaan konsultasi saya, sesuai ',
+      tautan: 'Kebijakan Privasi',
+      akhir: '.',
+    },
     error: {
       namaKosong: 'Mohon isi nama Anda.',
       namaPanjang: 'Nama terlalu panjang. Mohon singkat hingga 100 karakter.',
@@ -148,15 +164,30 @@ export const id = {
       persetujuan: 'Untuk melanjutkan, mohon centang persetujuan pemrosesan data.',
       terlaluSering: 'Anda sudah mengirim beberapa kali dalam waktu singkat. Mohon tunggu beberapa menit, lalu coba lagi.',
       server: 'Maaf, pesan Anda belum terkirim. Silakan coba lagi sebentar lagi, atau hubungi kami lewat WhatsApp.',
+      offline: 'Koneksi internet Anda tampaknya terputus. Periksa koneksi, lalu coba kirim lagi.',
       ringkasan: (n: number) => `Ada ${n} isian yang perlu diperbaiki. Periksa kolom yang ditandai.`,
     },
     tombol: { kirim: 'Kirim permintaan konsultasi', mengirim: 'Mengirim...' },
     labelHoneypot: 'Situs web',
-    catatanPrivasi: 'Data Anda hanya kami gunakan untuk menanggapi permintaan ini.',
+    catatanPrivasi: 'Data Anda hanya kami gunakan untuk menanggapi permintaan ini. Baca selengkapnya di ',
     sukses: {
       judul: 'Terima kasih, permintaan Anda sudah kami terima.',
       // Waktu respons belum ditetapkan RISE; jangan menjanjikan durasi sampai ada datanya.
+      // Kalimat "salinan konfirmasi ke email" dari copy dihilangkan karena belum ada email otomatis ke Lead.
       isi: 'Kami akan menghubungi Anda melalui email.',
+      penandaWaktu: 'PERLU DATA RISE: waktu respons, usulan: dalam 1 hari kerja',
+      penutup: 'Butuh jawaban lebih cepat? Anda dapat langsung menghubungi kami lewat WhatsApp.',
+      tombolWhatsapp: 'Chat via WhatsApp',
+      kembali: 'Kembali ke Beranda',
+    },
+    kontakLangsung: {
+      judul: 'Atau hubungi kami langsung',
+      whatsapp: 'WhatsApp',
+      email: 'Email',
+      telepon: 'Telepon kantor',
+      alamat: 'Alamat',
+      jam: 'Jam layanan',
+      penandaWhatsapp: 'PERLU DATA RISE: nomor WhatsApp bisnis',
     },
   },
 }

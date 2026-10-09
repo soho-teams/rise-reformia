@@ -70,6 +70,9 @@ export interface Config {
     insight: Insight;
     layanan: Layanan;
     media: Media;
+    konsultan: Konsultan;
+    klien: Klien;
+    testimoni: Testimoni;
     users: User;
     leads: Lead;
     'payload-kv': PayloadKv;
@@ -82,6 +85,9 @@ export interface Config {
     insight: InsightSelect<false> | InsightSelect<true>;
     layanan: LayananSelect<false> | LayananSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    konsultan: KonsultanSelect<false> | KonsultanSelect<true>;
+    klien: KlienSelect<false> | KlienSelect<true>;
+    testimoni: TestimoniSelect<false> | TestimoniSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     leads: LeadsSelect<false> | LeadsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -95,9 +101,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'pengaturan-situs': PengaturanSitus;
+    'bagian-opsional': BagianOpsional;
   };
   globalsSelect: {
     'pengaturan-situs': PengaturanSitusSelect<false> | PengaturanSitusSelect<true>;
+    'bagian-opsional': BagianOpsionalSelect<false> | BagianOpsionalSelect<true>;
   };
   locale: null;
   widgets: {
@@ -262,6 +270,66 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "konsultan".
+ */
+export interface Konsultan {
+  id: number;
+  foto?: (number | null) | Media;
+  nama: string;
+  jabatan: string;
+  keahlian?: string | null;
+  latarBelakang?: string | null;
+  /**
+   * Pendidikan dan sertifikasi yang boleh dipublikasikan, satu per baris.
+   */
+  kredensial?: string | null;
+  /**
+   * Angka kecil tampil lebih dulu.
+   */
+  urutan: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "klien".
+ */
+export interface Klien {
+  id: number;
+  nama: string;
+  /**
+   * Pastikan Klien sudah mengizinkan logonya ditampilkan.
+   */
+  logo?: (number | null) | Media;
+  /**
+   * Angka kecil tampil lebih dulu.
+   */
+  urutan: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimoni".
+ */
+export interface Testimoni {
+  id: number;
+  /**
+   * Kutipan asli dari Klien, dengan izin tertulis untuk dipublikasikan.
+   */
+  kutipan: string;
+  nama: string;
+  jabatan: string;
+  perusahaan: string;
+  /**
+   * Angka kecil tampil lebih dulu.
+   */
+  urutan: number;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "leads".
  */
 export interface Lead {
@@ -320,6 +388,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'konsultan';
+        value: number | Konsultan;
+      } | null)
+    | ({
+        relationTo: 'klien';
+        value: number | Klien;
+      } | null)
+    | ({
+        relationTo: 'testimoni';
+        value: number | Testimoni;
       } | null)
     | ({
         relationTo: 'users';
@@ -459,6 +539,45 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "konsultan_select".
+ */
+export interface KonsultanSelect<T extends boolean = true> {
+  foto?: T;
+  nama?: T;
+  jabatan?: T;
+  keahlian?: T;
+  latarBelakang?: T;
+  kredensial?: T;
+  urutan?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "klien_select".
+ */
+export interface KlienSelect<T extends boolean = true> {
+  nama?: T;
+  logo?: T;
+  urutan?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimoni_select".
+ */
+export interface TestimoniSelect<T extends boolean = true> {
+  kutipan?: T;
+  nama?: T;
+  jabatan?: T;
+  perusahaan?: T;
+  urutan?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
@@ -580,6 +699,18 @@ export interface PengaturanSitus {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bagian-opsional".
+ */
+export interface BagianOpsional {
+  id: number;
+  tampilKonsultan?: boolean | null;
+  tampilKlien?: boolean | null;
+  tampilTestimoni?: boolean | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pengaturan-situs_select".
  */
 export interface PengaturanSitusSelect<T extends boolean = true> {
@@ -602,6 +733,18 @@ export interface PengaturanSitusSelect<T extends boolean = true> {
         url?: T;
         id?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "bagian-opsional_select".
+ */
+export interface BagianOpsionalSelect<T extends boolean = true> {
+  tampilKonsultan?: T;
+  tampilKlien?: T;
+  tampilTestimoni?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

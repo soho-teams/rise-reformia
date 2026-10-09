@@ -16,6 +16,11 @@ const t = getMessages()
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--font-jakarta' })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
+// Revalidasi on-demand (revalidasiSitus) hanya tercatat di memori server. Bila server restart
+// sebelum halaman yang ditandai diminta lagi, cache di disk tetap versi lama; batas umur ini
+// memastikan konten basi pulih sendiri paling lama satu jam.
+export const revalidate = 3600
+
 // Bawaan untuk semua halaman publik; setiap halaman menimpanya lewat metadataHalaman().
 export const metadata: Metadata = {
   metadataBase: new URL(URL_SITUS),

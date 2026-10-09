@@ -22,9 +22,9 @@ const nextConfig: NextConfig = {
   },
   images: {
     localPatterns: [
-      {
-        pathname: '/api/media/file/**',
-      },
+      // Unggahan Media dari CMS dan foto statis situs di public/foto.
+      { pathname: '/api/media/file/**' },
+      { pathname: '/foto/**' },
     ],
   },
   webpack: (webpackConfig) => {

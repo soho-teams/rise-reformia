@@ -1,11 +1,13 @@
 'use client'
 
-import { useActionState } from 'react'
+import Link from 'next/link'
+import { useActionState, useState } from 'react'
 
 import { Centang, Isian } from '@/components/Isian'
 import { kelasTombol } from '@/components/Tombol'
 import { getMessages } from '@/i18n'
-import { FIELD_HONEYPOT, LAYANAN_LEAD, type FieldLead } from '@/lead/periksa'
+import { RUTE } from '@/situs/rute'
+import { FIELD_HONEYPOT, LAYANAN_LEAD, type FieldLead, type LayananLead } from '@/lead/periksa'
 import { kirimLead, type StateFormLead } from './actions'
 
 const t = getMessages().lead
@@ -43,14 +45,39 @@ function IsianTeks({ nama, tipe = 'text', autoComplete, opsional, bantuan, state
   )
 }
 
-export function FormLead() {
-  const [state, aksi, mengirim] = useActionState(kirimLead, AWAL)
+type PropsForm = {
+  /** Slug Layanan dari `?layanan=` (CTA halaman Layanan), langsung terpilih di isian Layanan diminati. */
+  layananAwal?: LayananLead
+  /** Tautan wa.me dari Pengaturan Situs; tanpa nomor, tombol WhatsApp di panel sukses tidak tampil. */
+  tautanWhatsapp?: string
+  /** Staging menampilkan penanda data yang belum dikirim RISE (lihat PenandaData). */
+  tampilkanPenanda?: boolean
+}
+
+export function FormLead({ layananAwal, tautanWhatsapp, tampilkanPenanda }: PropsForm) {
+  const [state, aksi, mengirim] = useActionState(kirimLead, {
+    ...AWAL,
+    nilai: layananAwal ? { layanan: layananAwal } : {},
+  })
+  const [offline, setOffline] = useState(false)
 
   if (state.status === 'sukses') {
     return (
       <div role="status" className="panel-sukses">
         <p className="judul-sukses">{t.sukses.judul}</p>
         <p>{t.sukses.isi}</p>
+        {tampilkanPenanda && <p className="penanda-data">[{t.sukses.penandaWaktu}]</p>}
+        {tautanWhatsapp && <p className="teks-redup">{t.sukses.penutup}</p>}
+        <div className="panel-sukses__aksi">
+          {tautanWhatsapp && (
+            <a href={tautanWhatsapp} className={kelasTombol('whatsapp')} rel="noopener" target="_blank">
+              {t.sukses.tombolWhatsapp}
+            </a>
+          )}
+          <Link href={RUTE.beranda} className={kelasTombol('teks')}>
+            {t.sukses.kembali}
+          </Link>
+        </div>
       </div>
     )
   }
@@ -60,12 +87,32 @@ export function FormLead() {
 
   return (
     // key memaksa form dipasang ulang dengan isian terakhir setelah setiap kiriman.
-    <form key={state.percobaan} action={aksi} noValidate className="form-lead">
-      <p>{t.pengantar}</p>
+    <form
+      key={state.percobaan}
+      action={aksi}
+      noValidate
+      aria-labelledby="judul-form"
+      className="form-lead"
+      onSubmit={(e) => {
+        // Tanpa koneksi, server action gagal tanpa pesan; isian tetap utuh dan pengunjung diberi tahu.
+        const putus = !navigator.onLine
+        setOffline(putus)
+        if (putus) e.preventDefault()
+      }}
+    >
+      <div className="form-lead__kepala">
+        <h2 id="judul-form">{t.judulForm}</h2>
+        <p className="teks-redup">{t.pengantar}</p>
+      </div>
 
       {jumlahError > 0 && (
         <div role="alert" className="ringkasan-error">
           {t.error.ringkasan(jumlahError)}
+        </div>
+      )}
+      {offline && (
+        <div role="alert" className="ringkasan-error">
+          {t.error.offline}
         </div>
       )}
       {state.pesan && (
@@ -103,7 +150,13 @@ export function FormLead() {
       <Centang
         id="f-persetujuan"
         name="persetujuan"
-        label={t.persetujuan}
+        label={
+          <>
+            {t.persetujuan.awal}
+            <Link href={RUTE.kebijakanPrivasi}>{t.persetujuan.tautan}</Link>
+            {t.persetujuan.akhir}
+          </>
+        }
         error={err.persetujuan}
         defaultChecked={state.nilai.persetujuan === 'on'}
       />
@@ -118,7 +171,10 @@ export function FormLead() {
         <button type="submit" disabled={mengirim} className={kelasTombol('utama')}>
           {mengirim ? t.tombol.mengirim : t.tombol.kirim}
         </button>
-        <p>{t.catatanPrivasi}</p>
+        <p>
+          {t.catatanPrivasi}
+          <Link href={RUTE.kebijakanPrivasi}>{t.persetujuan.tautan}</Link>.
+        </p>
       </div>
     </form>
   )

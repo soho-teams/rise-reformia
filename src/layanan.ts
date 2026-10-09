@@ -6,3 +6,6 @@ export const SLUG_LAYANAN = [
   'training-pengembangan',
 ] as const
 export type SlugLayanan = (typeof SLUG_LAYANAN)[number]
+
+export const slugLayananValid = (nilai: unknown): nilai is SlugLayanan =>
+  typeof nilai === 'string' && (SLUG_LAYANAN as readonly string[]).includes(nilai)
