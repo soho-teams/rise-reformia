@@ -2173,6 +2173,38 @@ a:hover {
   outline-offset: 3px;
 }
 
+/* Ponsel: footer satu kolom, isinya rata tengah. */
+@media (max-width: 639.98px) {
+  .footer__isi {
+    text-align: center;
+  }
+
+  .footer__identitas,
+  .footer__grup,
+  .footer__kontak address {
+    align-items: center;
+  }
+
+  .footer__identitas img {
+    align-self: center;
+  }
+
+  .footer__deskripsi {
+    margin-inline: auto;
+  }
+
+  .footer__grup nav a,
+  .footer__grup li a,
+  .footer__kontak > a {
+    justify-content: center;
+  }
+
+  .footer__legal {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 /* ---------- Halaman 404 ---------- */
 
 .halaman-404 {
